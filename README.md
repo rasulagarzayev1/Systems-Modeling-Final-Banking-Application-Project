@@ -8,5 +8,5 @@ https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotne
 Commands: 
 To add new migration: `dotnet ef migrations add <migration name> -p SysModelBank`
 
-To update database to `latest dotnet ef database update -p SysModelBank`
+To update database to latest `dotnet ef database update -p SysModelBank`
   
