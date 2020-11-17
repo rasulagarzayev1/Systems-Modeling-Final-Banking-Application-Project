@@ -4,3 +4,9 @@ This repository holds the code and all other necessary files for the final proje
 
 ## IMPORTANT - Never modify database manually. Use EntityFrameWork migrations 
 https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+
+Commands: 
+To add new migration: `dotnet ef migrations add <migration name> -p SysModelBank`
+
+To update database to `latest dotnet ef database update -p SysModelBank`
+  
