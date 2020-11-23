@@ -25,15 +25,21 @@ namespace SysModelBank
             services.AddDbContext<SysModelBankDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>(options => 
+            services.AddIdentity<User, Role>(options => 
             {
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
+                
             })
                 .AddEntityFrameworkStores<SysModelBankDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.ConfigureApplicationCookie(x =>
+            {
+                x.LoginPath = "/";
+                x.LogoutPath = "/Landing";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +68,8 @@ namespace SysModelBank
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Landing}/{action=Index}/{id?}")
+                    .RequireAuthorization();
                 endpoints.MapRazorPages();
             });
         }
