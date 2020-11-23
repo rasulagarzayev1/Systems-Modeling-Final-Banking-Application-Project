@@ -17,7 +17,8 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     NormalizedUserName = "ULNO",
                     NormalizedEmail = "ULNO@SYS.EE",
                     PasswordHash = "AQAAAAEAACcQAAAAEHsMGzjMkGokHqRjfxWTubUykxdrCkvbl0dt148ZjbUpQjyMiCseYeXZNPoDHj5SEw==",
-                    SecurityStamp = "b3af7d63-7742-4060-85ba-dd41e57f6265"
+                    SecurityStamp = "b3af7d63-7742-4060-85ba-dd41e57f6265",
+                    Address = "Brazil"
                 },
                 new User
                 {
@@ -27,7 +28,8 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     NormalizedUserName = "ISHAYA",
                     NormalizedEmail = "ISHAYA@SYS.EE",
                     PasswordHash = "AQAAAAEAACcQAAAAEHsMGzjMkGokHqRjfxWTubUykxdrCkvbl0dt148ZjbUpQjyMiCseYeXZNPoDHj5SEw==",
-                    SecurityStamp = "3cbf6e9f-9c59-4674-90e7-ec85ce898399"
+                    SecurityStamp = "3cbf6e9f-9c59-4674-90e7-ec85ce898399",
+                    Address = "Tartu"
                 }
             );
         }
