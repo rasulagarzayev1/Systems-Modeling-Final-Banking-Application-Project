@@ -5,11 +5,16 @@ This repository holds the code and all other necessary files for the final proje
 ## Requirements
 * Visual Studio
 
-## Usage instructions
+## Install
 1. Clone the repository
 2. Open SysModelBank/SysModelBank.sln with Visual Studio
 3. You can now run / build the app
 
+## Tips
+* Notifications
+```C#
+ViewBag.Notification = new NotificationModel(NotificationType.success, "Account registration was successful!");
+```
 ## IMPORTANT - Never modify database manually. Use EntityFrameWork migrations 
 ### And don't modify existing migrations
 https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
