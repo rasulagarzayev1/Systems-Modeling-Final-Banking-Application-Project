@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SysModelBank.Data;
+using SysModelBank.Services.Logger;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,6 +35,7 @@ namespace SysModelBank
             })
                 .AddEntityFrameworkStores<SysModelBankDbContext>();
             services.AddControllersWithViews();
+            services.AddScoped<IBankLogger, BankLogger>();
             services.AddRazorPages();
             services.ConfigureApplicationCookie(x =>
             {

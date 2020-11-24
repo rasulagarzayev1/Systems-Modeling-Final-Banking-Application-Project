@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SysModelBank.Services.Logger;
 using SysModelBank.Data.Models.Identity;
 using SysModelBank.Models.Identity;
 using System.Threading.Tasks;
@@ -11,11 +12,13 @@ namespace SysModelBank.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IBankLogger _logger;
 
-        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager, IBankLogger logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -29,6 +32,7 @@ namespace SysModelBank.Controllers
                 return RedirectToAction("Index", "Landing");
             }
 
+            _logger.Log(0, "IdentityController", "User " + model.Username + " logged in");
             return RedirectToAction("Index", "Overview");
         }
 
@@ -53,6 +57,7 @@ namespace SysModelBank.Controllers
 
             await _signInManager.SignInAsync(user, true);
 
+            _logger.Log(5, "IdentityController", "User " + model.Username + " was registered.");
             return RedirectToAction("Index", "Overview");
         }
 
