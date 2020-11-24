@@ -17,6 +17,17 @@ namespace SysModelBank.Models
         public NotificationType Type { get; set; }
         public string Message { get; set; }
 
+        public NotificationModel withType(NotificationType type)
+        {
+            this.Type = type;
+            return this;
+        }        
+        
+        public NotificationModel withMessage(string message)
+        {
+            this.Message = message;
+            return this;
+        }
         public NotificationModel(NotificationType type, string message)
         {
             Type = type;

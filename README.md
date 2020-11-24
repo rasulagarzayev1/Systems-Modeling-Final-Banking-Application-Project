@@ -15,6 +15,9 @@ This repository holds the code and all other necessary files for the final proje
 ```C#
 ViewBag.Notification = new NotificationModel(NotificationType.success, "Account registration was successful!");
 ```
+```C#
+ViewBag.Notification = new NotificationModel().withType(NotificationType.success).withMessage("Account registration was successful!")
+```
 ## IMPORTANT - Never modify database manually. Use EntityFrameWork migrations 
 ### And don't modify existing migrations
 https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
