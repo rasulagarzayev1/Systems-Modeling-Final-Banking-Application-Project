@@ -1,0 +1,82 @@
+$darkBlue:#3d5a80;
+$ligtBlue:#98c1d9;
+$whiteBlue:#e0fbfc;
+$orange:#ee6c4d;
+$lightBlack:#293241;
+
+@font-face {
+    font-family: RobotoBold;
+    src: url(../fonts/Roboto-Black.ttf);
+  }
+  @font-face {
+    font-family: RobotoRegular;
+    src: url(../fonts/Roboto-Regular.ttf);
+  }
+  @font-face {
+    font-family: RobotoMedium;
+    src: url(../fonts/Roboto-Medium.ttf);
+  }
+  @font-face {
+    font-family: RobotoItalic;
+    src: url(../fonts/Roboto-Italic.ttf);
+  }
+
+header{
+    .myNavBar{
+        background-color: $lightBlack!important;
+        a{
+            color: #fff!important;
+        }
+        .myAccountDrop{
+            width:100%;
+            button{
+                color: #fff;
+            }
+            a{
+                color:#365ca9!important;
+            }
+        }
+    }
+}
+main{
+    padding-top: 3%;
+    width: 100%;
+    h1{
+        color: $darkBlue;
+        padding-bottom: 1%;
+    }
+    .mainParts{
+        color: #fff;
+        padding: 2%;
+        border-radius: 20px;
+        font-size: 1.5em;
+        box-shadow: 5px 10px 8px #888888;
+    }
+    .firstPart{
+        background-color: $darkBlue;
+        .deleteButton{
+            background: $orange;
+            color: #fff;
+        }
+    }
+    .secondPart{
+        background-color: $orange;
+    }
+}
+@media screen and (min-width:320px) and (max-width:767px){
+    main{
+        h1{
+            font-size: 1.4em;
+            margin-bottom: 0;
+        }
+        .myContainer{
+            width: 90%;
+            margin: auto;
+        }
+        .mainParts{
+            font-size: 1.2em;
+            padding: 5%;
+
+        }
+    }
+}

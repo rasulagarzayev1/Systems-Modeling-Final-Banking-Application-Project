@@ -1,0 +1,76 @@
+$darkBlue:#3d5a80;
+$ligtBlue:#98c1d9;
+$whiteBlue:#e0fbfc;
+$orange:#ee6c4d;
+$lightBlack:#293241;
+
+@font-face {
+    font-family: RobotoBold;
+    src: url(../fonts/Roboto-Black.ttf);
+  }
+  @font-face {
+    font-family: RobotoRegular;
+    src: url(../fonts/Roboto-Regular.ttf);
+  }
+  @font-face {
+    font-family: RobotoMedium;
+    src: url(../fonts/Roboto-Medium.ttf);
+  }
+  @font-face {
+    font-family: RobotoItalic;
+    src: url(../fonts/Roboto-Italic.ttf);
+  }
+
+header{
+    .myNavBar{
+        background-color: $lightBlack!important;
+        a{
+            color: #fff!important;
+        }
+        .myAccountDrop{
+            width:100%;
+            button{
+                color: #fff;
+            }
+            a{
+                color:#365ca9!important;
+            }
+        }
+    }
+}
+
+main{
+    .myContainer{
+        h1{
+            width: 100%;
+            text-align: center;
+            color: $lightBlack;
+        }
+        form{
+            width: 50%;
+            margin: auto;
+            font-size: 1.5em;
+            label{
+                color: $lightBlack;
+            }
+            input{
+                border: 1px solid $lightBlack;
+            }
+            .formButton{
+                color: white;
+                background-color: $orange;
+                border: 2px solid $orange;
+                outline: none;
+                box-shadow: inset 0 0 0 0 #ffff;
+                transition: all 1s;
+                padding: 2%;
+                &:hover{
+                    color: $orange;
+                    background-color: white;
+                    box-shadow: inset 0 0 0 0 #ffff;
+                    box-shadow: inset 0 0 0 50px #ffff;
+                }
+            }
+        }
+    }
+}
