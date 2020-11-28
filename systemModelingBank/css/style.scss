@@ -80,3 +80,15 @@ main{
         }
     }
 }
+
+footer{
+    width: 100%;
+    background-color: $darkBlue;
+    p{
+        color: #fff;
+        padding: 2%;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+    }
+}

@@ -38,27 +38,11 @@ header .myNavBar .myAccountDrop a {
   color: #365ca9 !important;
 }
 
-main .myContainer h1 {
-  width: 100%;
-  text-align: center;
-  color: #293241;
+main h1 {
+  color: #3d5a80;
 }
 
-main .myContainer form {
-  width: 50%;
-  margin: auto;
-  font-size: 1.5em;
-}
-
-main .myContainer form label {
-  color: #293241;
-}
-
-main .myContainer form input {
-  border: 1px solid #293241;
-}
-
-main .myContainer form .formButton {
+main .createAccount {
   color: white;
   background-color: #ee6c4d;
   border: 2px solid #ee6c4d;
@@ -70,7 +54,7 @@ main .myContainer form .formButton {
   padding: 2%;
 }
 
-main .myContainer form .formButton:hover {
+main .createAccount:hover {
   color: #ee6c4d;
   background-color: white;
   -webkit-box-shadow: inset 0 0 0 0 #ffff;
@@ -79,9 +63,69 @@ main .myContainer form .formButton:hover {
           box-shadow: inset 0 0 0 50px #ffff;
 }
 
+main p {
+  color: #3d5a80;
+  display: inline-block;
+}
+
+main hr {
+  display: inline-block;
+  margin-bottom: 0.4%;
+  width: 88%;
+  background-color: #3d5a80;
+}
+
+main .myTable {
+  width: 100%;
+}
+
+main .myTable thead {
+  width: 100%;
+  background-color: #3d5a80;
+  color: #fff;
+}
+
+main .myTable tbody {
+  width: 100%;
+}
+
+main .myTable tbody tr {
+  width: 100%;
+  border-bottom: 10px solid #fff;
+}
+
+main .myTable tbody tr th,
+main .myTable tbody tr td {
+  background-color: #98c1d9;
+}
+
+main .myTable tbody tr th a,
+main .myTable tbody tr td a {
+  color: #ee6c4d;
+}
+
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  main .myContainer form {
-    width: 100%;
+  main h1 {
+    font-size: 1.4em;
+    margin-bottom: 0;
+  }
+  main .myContainer {
+    width: 90%;
+    margin: auto;
+  }
+  main .myContainer .createAccount {
+    margin-top: 0 !important;
+    margin-bottom: 2%;
+  }
+  main .myContainer p {
+    margin-top: 3%;
+  }
+  main .myContainer hr {
+    display: none;
+  }
+  main .myContainer .myTable tr td,
+  main .myContainer .myTable tr th {
+    font-size: 0.9em;
   }
 }
 
@@ -97,4 +141,4 @@ footer p {
   text-align: center;
   margin-bottom: 0;
 }
-/*# sourceMappingURL=register.css.map */
+/*# sourceMappingURL=transaction.css.map */
