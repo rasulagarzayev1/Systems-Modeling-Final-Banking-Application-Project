@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SysModelBank.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace SysModelBank.Data.Models.Identity
@@ -11,5 +12,7 @@ namespace SysModelBank.Data.Models.Identity
 
         [Required]
         public string Address { get; set; }
+
+        public UserStatus Status { get; set; } = UserStatus.PendingVerification;
     }
 }
