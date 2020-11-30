@@ -1,13 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SysModelBank.Data.Models.Identity;
+using SysModelBank.Data.Repositories;
+using SysModelBank.Models.Overview;
+using System.Threading.Tasks;
 
 namespace SysModelBank.Controllers
 {
     public class OverviewController : Controller
     {
-        public IActionResult Index()
+        private readonly IAccountRepository _accountRepository;
+
+        public OverviewController(IAccountRepository accountRepository)
         {
-            return View();
+            _accountRepository = accountRepository;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var accounts = await _accountRepository.GetAsync();
+
+            return View(new OverviewModel
+                {
+                    UserAccounts = accounts
+                });
         }
     }
 }

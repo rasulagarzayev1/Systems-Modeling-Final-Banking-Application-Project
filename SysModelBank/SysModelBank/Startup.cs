@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SysModelBank.Data.Models.Identity;
 using SysModelBank.Services.Identity;
+using SysModelBank.Data.Repositories;
+using SysModelBank.Data.Repositories.Identity;
 
 namespace SysModelBank
 {
@@ -81,6 +83,11 @@ namespace SysModelBank
 
         private void RegisterServices(IServiceCollection services)
         {
+            // Repositories
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // Services
             services.AddScoped<IBankLogger, BankLogger>();
             services.AddScoped<IUserService, UserService>();
         }
