@@ -1,0 +1,221 @@
+$darkBlue:#3d5a80;
+$ligtBlue:#98c1d9;
+$whiteBlue:#e0fbfc;
+$orange:#ee6c4d;
+$lightBlack:#293241;
+
+@font-face {
+    font-family: RobotoBold;
+    src: url(../fonts/Roboto-Black.ttf);
+  }
+  @font-face {
+    font-family: RobotoRegular;
+    src: url(../fonts/Roboto-Regular.ttf);
+  }
+  @font-face {
+    font-family: RobotoMedium;
+    src: url(../fonts/Roboto-Medium.ttf);
+  }
+  @font-face {
+    font-family: RobotoItalic;
+    src: url(../fonts/Roboto-Italic.ttf);
+  }
+
+header{
+    .myNavBar{
+        background-color: $lightBlack!important;
+        a{
+            color: #fff!important;
+        }
+        .myAccountDrop{
+            width:100%;
+            button{
+                color: #fff;
+            }
+            a{
+                color:#365ca9!important;
+            }
+        }
+    }
+}
+
+main{
+    .myContainer{
+        h1{
+            color:$darkBlue;
+        }  
+        .transactionsPart{
+            .generateCodeDiv{
+                .generateCodeBtn{
+                    color: $darkBlue;
+                    background-color: #fff;
+                    border: 2px solid $darkBlue;
+                    outline: none;
+                    box-shadow: inset 0 0 0 0 $darkBlue;
+                    transition: all 1s;
+                    padding: 1%;
+                    display: inline-block;
+                    &:hover{
+                        color: #fff;
+                        background-color: $darkBlue;
+                        box-shadow: inset 0 0 0 0 $darkBlue;
+                        box-shadow: inset 0 0 0 50px $darkBlue;
+                    }
+                }
+                .generateCodeDivContent{
+                    display: none;
+                    form{
+                        font-size: 1.5em;
+                        label{
+                            color: $lightBlack;
+                        }
+                        input,
+                        textarea{
+                            border: 1px solid $lightBlack;
+                        }
+                        .formButton{
+                            color: white;
+                            background-color: $orange;
+                            border: 2px solid $orange;
+                            outline: none;
+                            box-shadow: inset 0 0 0 0 #ffff;
+                            transition: all 1s;
+                            padding: 2%;
+                            &:hover{
+                                color: $orange;
+                                background-color: white;
+                                box-shadow: inset 0 0 0 0 #ffff;
+                                box-shadow: inset 0 0 0 50px #ffff;
+                            }
+                        }
+                    }
+                }
+            }
+           
+    
+            .newTransactionDiv{
+                .regularTransaction{
+                    color: white;
+                    background-color: $darkBlue;
+                    border: 2px solid $darkBlue;
+                    outline: none;
+                    box-shadow: inset 0 0 0 0 #ffff;
+                    transition: all 1s;
+                    padding: 1%;
+                    display: inline-block;
+                    &:hover{
+                        color: $darkBlue;
+                        background-color: white;
+                        box-shadow: inset 0 0 0 0 #ffff;
+                        box-shadow: inset 0 0 0 50px #ffff;
+                    }
+                }
+                .newTransactionDivContent{
+                    text-align: center;
+                    width: 100%;
+                    display: none;
+                    .newTransactionBtn{
+                        color: white;
+                        background-color: $orange;
+                        border: 2px solid $orange;
+                        outline: none;
+                        box-shadow: inset 0 0 0 0 #ffff;
+                        transition: all 1s;
+                        padding: 1%;
+                        display: inline-block;
+                        &:hover{
+                            color: $orange;
+                            background-color: white;
+                            box-shadow: inset 0 0 0 0 #ffff;
+                            box-shadow: inset 0 0 0 50px #ffff;
+                        }
+                    }
+                }
+            }
+        }
+        
+      
+        
+        p{
+            color: $darkBlue;
+            display: inline-block;
+        }  
+        hr{
+            display: inline-block;
+            margin-bottom: 0.4%;
+            width: 88%;
+            background-color: $darkBlue;
+        }
+       
+        .myTable{
+            width: 100%;
+            thead{
+                width: 100%;
+                background-color: $darkBlue;
+                color: #fff;
+            }
+            tbody{
+                width: 100%;
+                tr{
+                    width: 100%;
+                    border-bottom: 10px solid #fff;
+                    th,
+                    td{
+                        background-color: $ligtBlue;
+                        a{
+                            color: $orange;
+                        }
+                    }
+                }
+            }
+            
+           
+        }
+    } 
+}
+
+@media screen and (min-width:320px) and (max-width:767px){
+    main{
+        h1{
+            font-size: 1.4em;
+            margin-bottom: 0;
+            text-align: center;
+        }
+        .myContainer{
+            width: 90%;
+            margin: auto;
+            .createAccount{
+                margin-top: 0!important;
+                margin-bottom: 2%;
+            }
+            p{
+                margin-top: 3%;
+            }
+            hr{
+                display: none!important;
+            }
+            .myTable{
+                tr{
+                    td,
+                    th{
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+footer{
+    width: 100%;
+    background-color: $darkBlue;
+    p{
+        color: #fff;
+        padding: 2%;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+    }
+}

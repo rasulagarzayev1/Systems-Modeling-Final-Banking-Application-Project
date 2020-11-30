@@ -1,0 +1,234 @@
+@font-face {
+  font-family: RobotoBold;
+  src: url(../fonts/Roboto-Black.ttf);
+}
+
+@font-face {
+  font-family: RobotoRegular;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: RobotoMedium;
+  src: url(../fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+  font-family: RobotoItalic;
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+header .myNavBar {
+  background-color: #293241 !important;
+}
+
+header .myNavBar a {
+  color: #fff !important;
+}
+
+header .myNavBar .myAccountDrop {
+  width: 100%;
+}
+
+header .myNavBar .myAccountDrop button {
+  color: #fff;
+}
+
+header .myNavBar .myAccountDrop a {
+  color: #365ca9 !important;
+}
+
+main .myContainer h1 {
+  color: #3d5a80;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeBtn {
+  color: #3d5a80;
+  background-color: #fff;
+  border: 2px solid #3d5a80;
+  outline: none;
+  -webkit-box-shadow: inset 0 0 0 0 #3d5a80;
+          box-shadow: inset 0 0 0 0 #3d5a80;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  padding: 1%;
+  display: inline-block;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeBtn:hover {
+  color: #fff;
+  background-color: #3d5a80;
+  -webkit-box-shadow: inset 0 0 0 0 #3d5a80;
+          box-shadow: inset 0 0 0 0 #3d5a80;
+  -webkit-box-shadow: inset 0 0 0 50px #3d5a80;
+          box-shadow: inset 0 0 0 50px #3d5a80;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent {
+  display: none;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent form {
+  font-size: 1.5em;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent form label {
+  color: #293241;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent form input,
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent form textarea {
+  border: 1px solid #293241;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent form .formButton {
+  color: white;
+  background-color: #ee6c4d;
+  border: 2px solid #ee6c4d;
+  outline: none;
+  -webkit-box-shadow: inset 0 0 0 0 #ffff;
+          box-shadow: inset 0 0 0 0 #ffff;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  padding: 2%;
+}
+
+main .myContainer .transactionsPart .generateCodeDiv .generateCodeDivContent form .formButton:hover {
+  color: #ee6c4d;
+  background-color: white;
+  -webkit-box-shadow: inset 0 0 0 0 #ffff;
+          box-shadow: inset 0 0 0 0 #ffff;
+  -webkit-box-shadow: inset 0 0 0 50px #ffff;
+          box-shadow: inset 0 0 0 50px #ffff;
+}
+
+main .myContainer .transactionsPart .newTransactionDiv .regularTransaction {
+  color: white;
+  background-color: #3d5a80;
+  border: 2px solid #3d5a80;
+  outline: none;
+  -webkit-box-shadow: inset 0 0 0 0 #ffff;
+          box-shadow: inset 0 0 0 0 #ffff;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  padding: 1%;
+  display: inline-block;
+}
+
+main .myContainer .transactionsPart .newTransactionDiv .regularTransaction:hover {
+  color: #3d5a80;
+  background-color: white;
+  -webkit-box-shadow: inset 0 0 0 0 #ffff;
+          box-shadow: inset 0 0 0 0 #ffff;
+  -webkit-box-shadow: inset 0 0 0 50px #ffff;
+          box-shadow: inset 0 0 0 50px #ffff;
+}
+
+main .myContainer .transactionsPart .newTransactionDiv .newTransactionDivContent {
+  text-align: center;
+  width: 100%;
+  display: none;
+}
+
+main .myContainer .transactionsPart .newTransactionDiv .newTransactionDivContent .newTransactionBtn {
+  color: white;
+  background-color: #ee6c4d;
+  border: 2px solid #ee6c4d;
+  outline: none;
+  -webkit-box-shadow: inset 0 0 0 0 #ffff;
+          box-shadow: inset 0 0 0 0 #ffff;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  padding: 1%;
+  display: inline-block;
+}
+
+main .myContainer .transactionsPart .newTransactionDiv .newTransactionDivContent .newTransactionBtn:hover {
+  color: #ee6c4d;
+  background-color: white;
+  -webkit-box-shadow: inset 0 0 0 0 #ffff;
+          box-shadow: inset 0 0 0 0 #ffff;
+  -webkit-box-shadow: inset 0 0 0 50px #ffff;
+          box-shadow: inset 0 0 0 50px #ffff;
+}
+
+main .myContainer p {
+  color: #3d5a80;
+  display: inline-block;
+}
+
+main .myContainer hr {
+  display: inline-block;
+  margin-bottom: 0.4%;
+  width: 88%;
+  background-color: #3d5a80;
+}
+
+main .myContainer .myTable {
+  width: 100%;
+}
+
+main .myContainer .myTable thead {
+  width: 100%;
+  background-color: #3d5a80;
+  color: #fff;
+}
+
+main .myContainer .myTable tbody {
+  width: 100%;
+}
+
+main .myContainer .myTable tbody tr {
+  width: 100%;
+  border-bottom: 10px solid #fff;
+}
+
+main .myContainer .myTable tbody tr th,
+main .myContainer .myTable tbody tr td {
+  background-color: #98c1d9;
+}
+
+main .myContainer .myTable tbody tr th a,
+main .myContainer .myTable tbody tr td a {
+  color: #ee6c4d;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  main h1 {
+    font-size: 1.4em;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  main .myContainer {
+    width: 90%;
+    margin: auto;
+  }
+  main .myContainer .createAccount {
+    margin-top: 0 !important;
+    margin-bottom: 2%;
+  }
+  main .myContainer p {
+    margin-top: 3%;
+  }
+  main .myContainer hr {
+    display: none !important;
+  }
+  main .myContainer .myTable tr td,
+  main .myContainer .myTable tr th {
+    font-size: 0.9em;
+  }
+}
+
+footer {
+  width: 100%;
+  background-color: #3d5a80;
+}
+
+footer p {
+  color: #fff;
+  padding: 2%;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=clientTransactionOverview.css.map */
