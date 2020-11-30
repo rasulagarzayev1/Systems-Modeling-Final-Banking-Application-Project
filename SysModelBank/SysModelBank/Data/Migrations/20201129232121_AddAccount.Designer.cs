@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SysModelBank.Data;
 
 namespace SysModelBank.Data.Migrations
 {
     [DbContext(typeof(SysModelBankDbContext))]
-    partial class SysModelBankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129232121_AddAccount")]
+    partial class AddAccount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SysModelBank.Data.Models.Identity;
+using SysModelBank.Services.Identity;
+using SysModelBank.Data.Repositories;
+using SysModelBank.Data.Repositories.Identity;
 
 namespace SysModelBank
 {
@@ -35,7 +38,9 @@ namespace SysModelBank
             })
                 .AddEntityFrameworkStores<SysModelBankDbContext>();
             services.AddControllersWithViews();
-            services.AddScoped<IBankLogger, BankLogger>();
+
+            RegisterServices(services);
+
             services.AddRazorPages();
             services.ConfigureApplicationCookie(x =>
             {
@@ -74,6 +79,17 @@ namespace SysModelBank
                     .RequireAuthorization();
                 endpoints.MapRazorPages();
             });
+        }
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            // Repositories
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // Services
+            services.AddScoped<IBankLogger, BankLogger>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

@@ -5,6 +5,9 @@ using SysModelBank.Services.Logger;
 using SysModelBank.Data.Models.Identity;
 using SysModelBank.Models.Identity;
 using System.Threading.Tasks;
+using SysModelBank.Data.Enums;
+using SysModelBank.Services.Identity;
+using SysModelBank.Models;
 
 namespace SysModelBank.Controllers
 {
@@ -13,21 +16,21 @@ namespace SysModelBank.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IBankLogger _logger;
+        private readonly IUserService _userService;
 
-        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager, IBankLogger logger)
+        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager, IBankLogger logger, IUserService userService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _userService = userService;
         }
 
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, false);
-            
-            if (!result.Succeeded)
+            if (await _userService.LoginWithPasswordAsync(model.Username, model.Password))
             {
                 return RedirectToAction("Index", "Landing");
             }
@@ -45,20 +48,23 @@ namespace SysModelBank.Controllers
                 UserName = model.Username,
                 Email = model.Email,
                 PhoneNumber = model.Phone,
-                Address = model.Address
+                Address = model.Address,
+                Status = UserStatus.PendingVerification
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
+                ViewBag.Notification = new NotificationModel(NotificationType.danger, "Account creation failed!");
                 return RedirectToAction("Register", "Landing");
             }
 
-            await _signInManager.SignInAsync(user, true);
+            ViewBag.Notification = new NotificationModel(NotificationType.success, "Account creation succeeded. Wait for admin verification!");
 
-            _logger.Log(5, "IdentityController", "User " + model.Username + " was registered.");
-            return RedirectToAction("Index", "Overview");
+            _logger.Log(5, "IdentityController", "User " + model.Username + " was created.");
+
+             return RedirectToAction("Index", "Landing");
         }
 
         public async Task<IActionResult> Logout()

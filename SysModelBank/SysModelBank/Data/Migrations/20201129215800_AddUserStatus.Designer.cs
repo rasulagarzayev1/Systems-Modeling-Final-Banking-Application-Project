@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SysModelBank.Data;
 
 namespace SysModelBank.Data.Migrations
 {
     [DbContext(typeof(SysModelBankDbContext))]
-    partial class SysModelBankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129215800_AddUserStatus")]
+    partial class AddUserStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,26 +134,6 @@ namespace SysModelBank.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SysModelBank.Data.Models.Account", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Accounts");
-                });
-
             modelBuilder.Entity("SysModelBank.Data.Models.Identity.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -184,14 +166,14 @@ namespace SysModelBank.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "50a3f5d9-bcc8-40c6-82d3-153215a76da3",
+                            ConcurrencyStamp = "bc4c04dd-169b-4610-affb-b2744c9769c3",
                             Name = "client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "47100890-dff1-42ec-8976-3ed391921c06",
+                            ConcurrencyStamp = "17a64bfa-cd64-4aae-96e0-173e71037cde",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -276,7 +258,7 @@ namespace SysModelBank.Data.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             Address = "Brazil",
-                            ConcurrencyStamp = "0dde50d3-bab6-4763-b377-1570ff48f2a5",
+                            ConcurrencyStamp = "583588e0-4684-4a28-9eac-624a436e7387",
                             Email = "ulno@sys.ee",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -294,7 +276,7 @@ namespace SysModelBank.Data.Migrations
                             Id = 2,
                             AccessFailedCount = 0,
                             Address = "Tartu",
-                            ConcurrencyStamp = "1a734e00-eeb6-4bee-a1e4-65cc813ce633",
+                            ConcurrencyStamp = "a4071b1d-6360-4ef1-b6ab-db5332ba2ce6",
                             Email = "ishaya@sys.ee",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -357,15 +339,6 @@ namespace SysModelBank.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SysModelBank.Data.Models.Account", b =>
-                {
-                    b.HasOne("SysModelBank.Data.Models.Identity.User", "User")
-                        .WithMany("Accounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

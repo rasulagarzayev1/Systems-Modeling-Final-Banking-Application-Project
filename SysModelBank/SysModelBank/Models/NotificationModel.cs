@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SysModelBank.Models
+﻿namespace SysModelBank.Models
 {
     public enum NotificationType
     {
@@ -17,13 +12,13 @@ namespace SysModelBank.Models
         public NotificationType Type { get; set; }
         public string Message { get; set; }
 
-        public NotificationModel withType(NotificationType type)
+        public NotificationModel WithType(NotificationType type)
         {
             this.Type = type;
             return this;
         }        
         
-        public NotificationModel withMessage(string message)
+        public NotificationModel WithMessage(string message)
         {
             this.Message = message;
             return this;
