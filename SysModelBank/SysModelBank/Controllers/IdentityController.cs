@@ -56,11 +56,11 @@ namespace SysModelBank.Controllers
 
             if (!result.Succeeded)
             {
-                ViewBag.Notification = new NotificationModel(NotificationType.danger, "Account creation failed!");
+                ViewBag.Notification = new NotificationModel("Account creation failed!").asError();
                 return RedirectToAction("Register", "Landing");
             }
 
-            ViewBag.Notification = new NotificationModel(NotificationType.success, "Account creation succeeded. Wait for admin verification!");
+            ViewBag.Notification = new NotificationModel( "Account creation succeeded. Wait for admin verification!").asSuccess();
 
             _logger.Log("IdentityController", "User " + model.Username + " was created.");
 
