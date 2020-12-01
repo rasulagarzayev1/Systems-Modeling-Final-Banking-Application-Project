@@ -46,7 +46,7 @@ namespace SysModelBank
             services.ConfigureApplicationCookie(x =>
             {
                 x.LoginPath = "/";
-                x.LogoutPath = "/Landing";
+                x.LogoutPath = "/Identity";
             });
         }
 
@@ -76,7 +76,7 @@ namespace SysModelBank
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Landing}/{action=Index}/{id?}")
+                    pattern: "{controller=Identity}/{action=Index}/{id?}")
                     .RequireAuthorization();
                 endpoints.MapRazorPages();
             });

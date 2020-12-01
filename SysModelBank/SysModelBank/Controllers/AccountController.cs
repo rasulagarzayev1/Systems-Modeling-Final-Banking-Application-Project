@@ -14,6 +14,12 @@ namespace SysModelBank.Controllers
             _accountRepository = accountRepository;
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAccount()
         {

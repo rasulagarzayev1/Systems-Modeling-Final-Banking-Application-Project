@@ -26,13 +26,26 @@ namespace SysModelBank.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (await _userService.LoginWithPasswordAsync(model.Username, model.Password))
+            if (!await _userService.LoginWithPasswordAsync(model.Username, model.Password))
             {
-                return RedirectToAction("Index", "Landing");
+                ModelState.AddModelError(string.Empty, "Login failed");
+                return View("Index");
             }
 
             _logger.Log("IdentityController", "User " + model.Username + " logged in");
@@ -59,7 +72,7 @@ namespace SysModelBank.Controllers
             if (!result.Succeeded)
             {
                 ViewBag.Notification = new NotificationModel("Account creation failed!: " + string.Join(", ", result.Errors)).asError();
-                return RedirectToAction("Register", "Landing");
+                return View();
             }
 
             ViewBag.Notification = new NotificationModel( "Account creation succeeded. Wait for admin verification!").asSuccess();
@@ -73,7 +86,7 @@ namespace SysModelBank.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction("Index", "Landing");
+            return RedirectToAction("Index");
         }
 
     }
