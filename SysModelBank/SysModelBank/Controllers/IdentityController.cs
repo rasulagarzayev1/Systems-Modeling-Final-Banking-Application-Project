@@ -35,7 +35,7 @@ namespace SysModelBank.Controllers
                 return RedirectToAction("Index", "Landing");
             }
 
-            _logger.Log(0, "IdentityController", "User " + model.Username + " logged in");
+            _logger.Log("IdentityController", "User " + model.Username + " logged in");
             return RedirectToAction("Index", "Overview");
         }
 
@@ -62,7 +62,7 @@ namespace SysModelBank.Controllers
 
             ViewBag.Notification = new NotificationModel(NotificationType.success, "Account creation succeeded. Wait for admin verification!");
 
-            _logger.Log(5, "IdentityController", "User " + model.Username + " was created.");
+            _logger.Log("IdentityController", "User " + model.Username + " was created.");
 
              return RedirectToAction("Index", "Landing");
         }
