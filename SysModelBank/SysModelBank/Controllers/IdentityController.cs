@@ -49,14 +49,16 @@ namespace SysModelBank.Controllers
                 Email = model.Email,
                 PhoneNumber = model.Phone,
                 Address = model.Address,
-                Status = UserStatus.PendingVerification
+                Status = UserStatus.PendingVerification,
+                Firstname = model.Firstname,
+                Lastname = model.Lastname
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
-                ViewBag.Notification = new NotificationModel("Account creation failed!").asError();
+                ViewBag.Notification = new NotificationModel("Account creation failed!: " + string.Join(", ", result.Errors)).asError();
                 return RedirectToAction("Register", "Landing");
             }
 

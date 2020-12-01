@@ -14,6 +14,12 @@ namespace SysModelBank.Data.Models.Identity
         public const int IshayaId = 2;
 
         [Required]
+        public string Firstname { get; set; }
+
+        [Required]
+        public string Lastname { get; set; }
+
+        [Required]
         public string Address { get; set; }
 
         [Required]

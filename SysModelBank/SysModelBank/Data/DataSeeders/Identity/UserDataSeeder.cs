@@ -20,7 +20,9 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     PasswordHash = "AQAAAAEAACcQAAAAEHsMGzjMkGokHqRjfxWTubUykxdrCkvbl0dt148ZjbUpQjyMiCseYeXZNPoDHj5SEw==",
                     SecurityStamp = "b3af7d63-7742-4060-85ba-dd41e57f6265",
                     Address = "Brazil",
-                    Status = UserStatus.Active
+                    Status = UserStatus.Active,
+                    Firstname = "Ulno",
+                    Lastname = "Best"
                 },
                 new User
                 {
@@ -32,7 +34,9 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     PasswordHash = "AQAAAAEAACcQAAAAEHsMGzjMkGokHqRjfxWTubUykxdrCkvbl0dt148ZjbUpQjyMiCseYeXZNPoDHj5SEw==",
                     SecurityStamp = "3cbf6e9f-9c59-4674-90e7-ec85ce898399",
                     Address = "Tartu",
-                    Status = UserStatus.Active
+                    Status = UserStatus.Active,
+                    Firstname = "Ishaya",
+                    Lastname = "Good"
                 }
             );
         }
