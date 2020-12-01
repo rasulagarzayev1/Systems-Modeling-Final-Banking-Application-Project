@@ -22,7 +22,8 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     Address = "Brazil",
                     Status = UserStatus.Active,
                     Firstname = "Ulno",
-                    Lastname = "Best"
+                    Lastname = "Best",
+                    ConcurrencyStamp = "aaa20ff6-6bf2-4f3c-897f-6bf35568bf3b"
                 },
                 new User
                 {
@@ -36,7 +37,8 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     Address = "Tartu",
                     Status = UserStatus.Active,
                     Firstname = "Ishaya",
-                    Lastname = "Good"
+                    Lastname = "Good",
+                    ConcurrencyStamp = "393b36c9-83d5-4d5c-82e1-34a0d8551a68"
                 }
             );
         }
