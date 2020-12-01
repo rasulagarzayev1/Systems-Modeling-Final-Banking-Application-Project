@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SysModelBank.Data.Models;
+using SysModelBank.Data.Models.Identity;
 using SysModelBank.Data.Repositories;
-using System.Security.Claims;
+using SysModelBank.Data.Repositories.Identity;
+using SysModelBank.Extensions;
+using SysModelBank.Models.Identity;
 using System.Threading.Tasks;
 
 namespace SysModelBank.Controllers
@@ -9,15 +12,19 @@ namespace SysModelBank.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountRepository _accountRepository;
-        public AccountController(IAccountRepository accountRepository)
+        private readonly IUserRepository _userRepository;
+        public AccountController(IAccountRepository accountRepository, IUserRepository userRepository)
         {
             _accountRepository = accountRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var user = await _userRepository.GetAsync(User.Id());
+
+            return View(MapToUserModel(user));
         }
 
         [HttpPost]
@@ -25,10 +32,22 @@ namespace SysModelBank.Controllers
         {
              await _accountRepository.CreateAsync(new Account
             {
-                UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
+                UserId = User.Id()
             });
 
             return RedirectToAction("Index", "Overview");
         }
+
+        private UserModel MapToUserModel(User user) =>
+            new UserModel
+            {
+                Address = user.Address,
+                Email = user.Email,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Phone = user.PhoneNumber,
+                Username = user.UserName,
+                Status = user.Status
+            };
     }
 }

@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model SysModelBank.Models.Identity.UserModel
+
+<div class="container myContainer">
+    <h1>User overview</h1>
+    <div class="row">
+        <div class="col-md-5 mt-3 mainParts firstPart">
+            <p><b>Name: </b>@Model.Firstname @Model.Lastname</p>
+            <p><b>Email: </b>@Model.Email</p>
+            <p><b>Username: </b>@Model.Username</p>
+            <p><b>Phone: </b>@Model.Phone</p>
+            <p><b>Address: </b>@Model.Address</p>
+            <p><b>Status: </b>@Model.Status</p>
+            <a class="btn btn-outline-light" href="">Edit</a>
+            <a class="btn deleteButton" href="">Delete</a>
+        </div>
+        <div class="col-md-5 mt-3 offset-md-2 mainParts secondPart">
+            <p><b>Default currency:</b> EUR</p>
+            <div class="dropdown">
+                <button class="btn btn-block btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <b>Change currency</b>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">USD</a>
+                    <a class="dropdown-item" href="#">AZN</a>
+                    <a class="dropdown-item" href="#">RUB</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
