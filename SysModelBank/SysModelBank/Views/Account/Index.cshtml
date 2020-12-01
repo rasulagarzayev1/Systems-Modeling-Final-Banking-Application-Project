@@ -1,4 +1,6 @@
-﻿@model SysModelBank.Models.Identity.UserModel
+﻿@using SysModelBank.Data.Enums
+
+@model SysModelBank.Models.Identity.UserModel
 
 <div class="container myContainer">
     <h1>User overview</h1>
@@ -11,7 +13,18 @@
             <p><b>Address: </b>@Model.Address</p>
             <p><b>Status: </b>@Model.Status</p>
             <a class="btn btn-outline-light" href="">Edit</a>
-            <a class="btn deleteButton" href="">Delete</a>
+            @if (Model.Status == UserStatus.Active)
+            {
+                <form style="display: contents;" asp-controller="User" asp-action="RequestDelete">
+                    <button type="submit" class="btn deleteButton">Delete</button>
+                </form>
+            }
+            @if (Model.Status == UserStatus.PendingDeletion)
+            {
+                <form style="display: contents;" asp-controller="User" asp-action="CancelDelete">
+                    <button type="submit" class="btn deleteButton">Cancel delete</button>
+                </form>
+            }
         </div>
         <div class="col-md-5 mt-3 offset-md-2 mainParts secondPart">
             <p><b>Default currency:</b> EUR</p>
