@@ -37,7 +37,8 @@ namespace SysModelBank
                 
             })
                 .AddEntityFrameworkStores<SysModelBankDbContext>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
 
             RegisterServices(services);
 
