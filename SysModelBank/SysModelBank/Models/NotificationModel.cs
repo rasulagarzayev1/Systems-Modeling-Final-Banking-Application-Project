@@ -1,31 +1,36 @@
 ﻿namespace SysModelBank.Models
 {
-    public enum NotificationType
-    {
-        danger,
-        success,
-        info
-    }
-
     public class NotificationModel
     {
-        public NotificationType Type { get; set; }
+        public string Type { get; private set; }
         public string Message { get; set; }
 
-        public NotificationModel WithType(NotificationType type)
+        public NotificationModel asError()
         {
-            this.Type = type;
+            this.Type = "danger";
             return this;
-        }        
-        
+        }
+
+        public NotificationModel asSuccess()
+        {
+            this.Type = "success";
+            return this;
+        }
+
+        public NotificationModel asInfo()
+        {
+            this.Type = "info";
+            return this;
+        }
+
         public NotificationModel WithMessage(string message)
         {
             this.Message = message;
             return this;
         }
-        public NotificationModel(NotificationType type, string message)
+
+        public NotificationModel(string message)
         {
-            Type = type;
             Message = message;
         }
     }

@@ -10,6 +10,7 @@ namespace SysModelBank.Data
     public class SysModelBankDbContext : IdentityDbContext<User, Role, int>
     {
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
 
         public SysModelBankDbContext(DbContextOptions<SysModelBankDbContext> options)
             : base(options)
