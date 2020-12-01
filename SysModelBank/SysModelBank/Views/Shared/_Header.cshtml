@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SysModelBank.Data.Models.Identity
+@inject SignInManager<User> SignInManager
+
+<header id="navigation">
+    <nav class="myNavBar navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" asp-controller="Overview" asp-action="Index">SysMod Bank</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse row" id="navbarNavAltMarkup">
+            <div class="col-md-1"></div>
+            <div class="navbar-nav col-md-9">
+                <a class="nav-link active" asp-controller="Overview" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Transactions</a>
+                <a class="nav-link" href="#">History</a>
+            </div>
+            <div class="navbar-nav col-md-2">
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <a class="nav-link" asp-controller="Identity" asp-action="Login"><b>Login</b></a>
+                    <a class="nav-link" asp-controller="Identity" asp-action="Register"><b>Register</b></a>
+                }
+            </div>
+        </div>
+    </nav>
+</header>

@@ -7,53 +7,37 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Overview" asp-action="Index">SysModelBank</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    <partial name="_Header" />
+    <div class="container">
+        @if (ViewBag.Notification != null)
+        {
+            <div class="alert alert-@ViewBag.Notification.Type alert-dismissible fade show" role="alert">
+                @ViewBag.Notification.Message
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Overview" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Overview" asp-action="Index">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </nav>
-    </header>
-<div class="container">
-    @if (ViewBag.Notification != null)
-    {
-        <div class="alert alert-@ViewBag.Notification.Type alert-dismissible fade show" role="alert">
-            @ViewBag.Notification.Message
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>  
-    }
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+        }
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
     @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - SysModelBank - <a asp-area="" asp-controller="Overview" asp-action="Index">Privacy</a>
-        </div>
-    </footer>*@
+            <div class="container">
+                &copy; 2020 - SysModelBank - <a asp-area="" asp-controller="Overview" asp-action="Index">Privacy</a>
+            </div>
+        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
