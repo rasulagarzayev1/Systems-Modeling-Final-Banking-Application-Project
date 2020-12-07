@@ -11,6 +11,7 @@ using SysModelBank.Data.Models.Identity;
 using SysModelBank.Services.Identity;
 using SysModelBank.Data.Repositories;
 using SysModelBank.Data.Repositories.Identity;
+using SysModelBank.Data.Repositories.Settings;
 
 namespace SysModelBank
 {
@@ -91,6 +92,9 @@ namespace SysModelBank
             // Services
             services.AddScoped<IBankLogger, BankLogger>();
             services.AddScoped<IUserService, UserService>();
+
+            // Settings
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
         }
     }
 }

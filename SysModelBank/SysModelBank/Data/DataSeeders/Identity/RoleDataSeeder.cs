@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SysModelBank.Data.Models.Identity;
 
 namespace SysModelBank.Data.DataSeeders.Identity

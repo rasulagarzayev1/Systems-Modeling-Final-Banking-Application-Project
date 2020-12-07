@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SysModelBank.Data.DataSeeders.Identity;
+using SysModelBank.Data.DataSeeders.Settings;
 using SysModelBank.Data.Models;
 using SysModelBank.Data.Models.Identity;
+using SysModelBank.Data.Models.Settings;
 
 namespace SysModelBank.Data
 {
@@ -11,6 +12,7 @@ namespace SysModelBank.Data
     {
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<Currency> Currency { get; set; }
 
         public SysModelBankDbContext(DbContextOptions<SysModelBankDbContext> options)
             : base(options)
@@ -26,6 +28,7 @@ namespace SysModelBank.Data
             new UserDataSeeder().Add(builder);
             new RoleDataSeeder().Add(builder);
             new UserRoleDataSeeder().Add(builder);
+            new CurrencyDataSeeder().Add(builder);
         }
     }
 }
