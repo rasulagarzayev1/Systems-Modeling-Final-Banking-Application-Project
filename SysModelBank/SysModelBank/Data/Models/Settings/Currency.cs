@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SysModelBank.Data.Models.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +9,8 @@ namespace SysModelBank.Data.Models.Settings
 {
     public class Currency : IBaseEntity
     {
+        public const int EurId = 1;
+
         [Key]
         public int Id { get; set; }
 

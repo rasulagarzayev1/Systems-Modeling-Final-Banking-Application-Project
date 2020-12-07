@@ -12,6 +12,7 @@ using SysModelBank.Services.Identity;
 using SysModelBank.Data.Repositories;
 using SysModelBank.Data.Repositories.Identity;
 using SysModelBank.Data.Repositories.Settings;
+using SysModelBank.Services.Settings;
 
 namespace SysModelBank
 {
@@ -29,7 +30,7 @@ namespace SysModelBank
         {
             services.AddDbContext<SysModelBankDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
             services.AddIdentity<User, Role>(options => 
             {
                 options.Password.RequireNonAlphanumeric = false;
@@ -95,6 +96,7 @@ namespace SysModelBank
 
             // Settings
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+            services.AddScoped<ICurrencyService, CurrencyService>();
         }
     }
 }

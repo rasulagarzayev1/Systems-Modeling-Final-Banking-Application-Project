@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SysModelBank.Data.Enums;
 using SysModelBank.Data.Models.Identity;
+using SysModelBank.Data.Models.Settings;
 using System;
 
 namespace SysModelBank.Data.DataSeeders.Identity
@@ -23,7 +24,8 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     Status = UserStatus.Active,
                     Firstname = "Ulno",
                     Lastname = "Best",
-                    ConcurrencyStamp = "aaa20ff6-6bf2-4f3c-897f-6bf35568bf3b"
+                    ConcurrencyStamp = "aaa20ff6-6bf2-4f3c-897f-6bf35568bf3b",
+                    CurrencyId = Currency.EurId
                 },
                 new User
                 {
@@ -38,7 +40,8 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     Status = UserStatus.Active,
                     Firstname = "Ishaya",
                     Lastname = "Good",
-                    ConcurrencyStamp = "393b36c9-83d5-4d5c-82e1-34a0d8551a68"
+                    ConcurrencyStamp = "393b36c9-83d5-4d5c-82e1-34a0d8551a68",
+                    CurrencyId = Currency.EurId
                 }
             );
         }

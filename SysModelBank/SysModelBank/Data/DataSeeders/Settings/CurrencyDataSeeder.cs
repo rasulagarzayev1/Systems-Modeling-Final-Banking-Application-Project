@@ -10,7 +10,7 @@ namespace SysModelBank.Data.DataSeeders.Settings
             builder.Entity<Currency>().HasData(
                 new Currency
                 {
-                    Id = 1,
+                    Id = Currency.EurId,
                     Name = "EUR",
                     Symbol = "€",
                     RateFromEur = 1m

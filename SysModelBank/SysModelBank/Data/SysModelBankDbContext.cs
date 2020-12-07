@@ -25,10 +25,10 @@ namespace SysModelBank.Data
 
             builder.ApplyConfigurationsFromAssembly(typeof(SysModelBankDbContext).Assembly);
 
+            new CurrencyDataSeeder().Add(builder);
             new UserDataSeeder().Add(builder);
             new RoleDataSeeder().Add(builder);
             new UserRoleDataSeeder().Add(builder);
-            new CurrencyDataSeeder().Add(builder);
         }
     }
 }
