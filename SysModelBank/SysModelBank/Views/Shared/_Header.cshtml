@@ -4,7 +4,7 @@
 
 <header id="navigation">
     <nav class="myNavBar navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" asp-controller="Overview" asp-action="Index">SysMod Bank</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Overview" asp-action="Index">SysMod Bank</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,15 +12,15 @@
         <div class="collapse navbar-collapse row" id="navbarNavAltMarkup">
             <div class="col-md-1"></div>
             <div class="navbar-nav col-md-9">
-                <a class="nav-link active" asp-controller="Overview" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" asp-area="" asp-controller="Overview" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="#">Transactions</a>
                 <a class="nav-link" href="#">History</a>
             </div>
             <div class="navbar-nav col-md-2">
                 @if (!SignInManager.IsSignedIn(User))
                 {
-                    <a class="nav-link" asp-controller="Identity" asp-action="Index"><b>Login</b></a>
-                    <a class="nav-link" asp-controller="Identity" asp-action="Register"><b>Register</b></a>
+                    <a class="nav-link" asp-area="" asp-controller="Identity" asp-action="Index"><b>Login</b></a>
+                    <a class="nav-link" asp-area="" asp-controller="Identity" asp-action="Register"><b>Register</b></a>
                 }
                 else
                 {
@@ -30,8 +30,8 @@
                             <b>Account</b>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a asp-controller="Account" asp-action="Index" class="dropdown-item">Account info</a>
-                            <a asp-controller="Identity" asp-action="Logout" class="dropdown-item">Log out</a>
+                            <a asp-area="" asp-controller="Account" asp-action="Index" class="dropdown-item">Account info</a>
+                            <a asp-area="" asp-controller="Identity" asp-action="Logout" class="dropdown-item">Log out</a>
                         </div>
                     </div>
                 }

@@ -5,6 +5,7 @@ using SysModelBank.Data.Repositories;
 using SysModelBank.Data.Repositories.Identity;
 using SysModelBank.Extensions;
 using SysModelBank.Models.Identity;
+using SysModelBank.Models.Settings;
 using System.Threading.Tasks;
 
 namespace SysModelBank.Controllers
@@ -38,6 +39,18 @@ namespace SysModelBank.Controllers
             return RedirectToAction("Index", "Overview");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SetCurrency(int currencyId)
+        {
+            var user = await _userRepository.GetAsync(User.Id());
+
+            user.CurrencyId = currencyId;
+
+            await _userRepository.UpdateAsync(user);
+
+            return RedirectToAction("Index");
+        }
+
         private UserModel MapToUserModel(User user) =>
             new UserModel
             {
@@ -47,7 +60,12 @@ namespace SysModelBank.Controllers
                 Lastname = user.Lastname,
                 Phone = user.PhoneNumber,
                 Username = user.UserName,
-                Status = user.Status
+                Status = user.Status,
+                Currency = new CurrencyModel
+                {
+                    Id = user.CurrencyId,
+                    Name = user.Currency.Name
+                }
             };
     }
 }

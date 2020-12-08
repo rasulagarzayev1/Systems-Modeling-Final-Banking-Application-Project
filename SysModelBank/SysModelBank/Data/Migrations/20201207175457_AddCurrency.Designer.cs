@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SysModelBank.Data;
 
 namespace SysModelBank.Data.Migrations
 {
     [DbContext(typeof(SysModelBankDbContext))]
-    partial class SysModelBankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201207175457_AddCurrency")]
+    partial class AddCurrency
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,9 +217,6 @@ namespace SysModelBank.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CurrencyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -271,8 +270,6 @@ namespace SysModelBank.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrencyId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -290,7 +287,6 @@ namespace SysModelBank.Data.Migrations
                             AccessFailedCount = 0,
                             Address = "Brazil",
                             ConcurrencyStamp = "aaa20ff6-6bf2-4f3c-897f-6bf35568bf3b",
-                            CurrencyId = 1,
                             Email = "ulno@sys.ee",
                             EmailConfirmed = false,
                             Firstname = "Ulno",
@@ -311,7 +307,6 @@ namespace SysModelBank.Data.Migrations
                             AccessFailedCount = 0,
                             Address = "Tartu",
                             ConcurrencyStamp = "393b36c9-83d5-4d5c-82e1-34a0d8551a68",
-                            CurrencyId = 1,
                             Email = "ishaya@sys.ee",
                             EmailConfirmed = false,
                             Firstname = "Ishaya",
@@ -456,15 +451,6 @@ namespace SysModelBank.Data.Migrations
                     b.HasOne("SysModelBank.Data.Models.Identity.User", "User")
                         .WithMany("Accounts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SysModelBank.Data.Models.Identity.User", b =>
-                {
-                    b.HasOne("SysModelBank.Data.Models.Settings.Currency", "Currency")
-                        .WithMany()
-                        .HasForeignKey("CurrencyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

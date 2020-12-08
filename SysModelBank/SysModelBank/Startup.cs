@@ -11,6 +11,8 @@ using SysModelBank.Data.Models.Identity;
 using SysModelBank.Services.Identity;
 using SysModelBank.Data.Repositories;
 using SysModelBank.Data.Repositories.Identity;
+using SysModelBank.Data.Repositories.Settings;
+using SysModelBank.Services.Settings;
 
 namespace SysModelBank
 {
@@ -28,7 +30,7 @@ namespace SysModelBank
         {
             services.AddDbContext<SysModelBankDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
             services.AddIdentity<User, Role>(options => 
             {
                 options.Password.RequireNonAlphanumeric = false;
@@ -74,6 +76,10 @@ namespace SysModelBank
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=UserManagement}/{action=Index}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Identity}/{action=Index}/{id?}")
@@ -91,6 +97,10 @@ namespace SysModelBank
             // Services
             services.AddScoped<IBankLogger, BankLogger>();
             services.AddScoped<IUserService, UserService>();
+
+            // Settings
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+            services.AddScoped<ICurrencyService, CurrencyService>();
         }
     }
 }

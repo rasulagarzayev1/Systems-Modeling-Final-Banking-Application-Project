@@ -1,6 +1,7 @@
 ﻿@using SysModelBank.Data.Enums
 
 @model SysModelBank.Models.Identity.UserModel
+@inject SysModelBank.Services.Settings.ICurrencyService _currencyService
 
 <div class="container myContainer">
     <h1>User overview</h1>
@@ -26,20 +27,23 @@
                 </form>
             }
         </div>
-        <div class="col-md-5 mt-3 offset-md-2 mainParts secondPart">
-            <p><b>Default currency:</b> EUR</p>
-            <div class="dropdown">
-                <button class="btn btn-block btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <b>Change currency</b>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">USD</a>
-                    <a class="dropdown-item" href="#">AZN</a>
-                    <a class="dropdown-item" href="#">RUB</a>
+            <div class="col-md-5 mt-3 offset-md-2 mainParts secondPart">
+                <p><b>Default currency: </b>@Model.Currency.Name</p>
+                <div class="dropdown">
+                    <button class="btn btn-block btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <b>Change currency</b>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var currency in await _currencyService.GetAllAsync())
+                        {
+                            <form style="display: contents;" asp-controller="Account" asp-action="SetCurrency">
+                                @Html.Hidden("currencyId", currency.Id)
+                                <button type="submit" class="dropdown-item">@currency.Name</button>
+                            </form>
+                        }
+                        </div>
                 </div>
             </div>
-        </div>
-
     </div>
 </div>

@@ -1,4 +1,5 @@
 ﻿using SysModelBank.Data.Enums;
+using SysModelBank.Models.Settings;
 
 namespace SysModelBank.Models.Identity
 {
@@ -19,5 +20,7 @@ namespace SysModelBank.Models.Identity
         public string Address { get; set; }
 
         public UserStatus Status { get; set; }
+
+        public CurrencyModel Currency { get; set; }
     }
 }

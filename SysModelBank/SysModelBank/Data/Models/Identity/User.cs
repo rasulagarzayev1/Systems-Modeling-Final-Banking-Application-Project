@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SysModelBank.Data.Enums;
+using SysModelBank.Data.Models.Settings;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,7 +26,12 @@ namespace SysModelBank.Data.Models.Identity
         [Required]
         public UserStatus Status { get; set; } = UserStatus.PendingVerification;
 
+        [Required]
+        public int CurrencyId { get; set; }
+
         public virtual ICollection<Account> Accounts { get; set; }
+
+        public virtual Currency Currency { get; set; }
     }
 
     public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
@@ -33,6 +39,9 @@ namespace SysModelBank.Data.Models.Identity
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasMany(x => x.Accounts).WithOne(x => x.User)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.Currency).WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
