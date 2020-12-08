@@ -112,6 +112,7 @@ main .myTable tbody tr td a {
   main .myContainer {
     width: 90%;
     margin: auto;
+    overflow-x: auto;
   }
   main .myContainer .createAccount {
     margin-top: 0 !important;

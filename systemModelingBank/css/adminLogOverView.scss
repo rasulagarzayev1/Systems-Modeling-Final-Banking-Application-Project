@@ -43,37 +43,50 @@ main{
     h1{
         color:$darkBlue;
     }  
-    .createAccount{
-        color: white;
-        background-color: $orange;
-        border: 2px solid $orange;
-        outline: none;
-        box-shadow: inset 0 0 0 0 #ffff;
-        transition: all 1s;
-        padding: 2%;
-        &:hover{
-            color: $orange;
-            background-color: white;
+    .mainTopPart{
+        .logButtons{
+            color: white;
+            background-color: $orange;
+            border: 2px solid $orange;
+            outline: none;
             box-shadow: inset 0 0 0 0 #ffff;
-            box-shadow: inset 0 0 0 50px #ffff;
+            transition: all 1s;
+            padding: 2%;
+            &:hover{
+                color: $orange;
+                background-color: white;
+                box-shadow: inset 0 0 0 0 #ffff;
+                box-shadow: inset 0 0 0 50px #ffff;
+            }
+        }
+        hr{
+            display: inline-block;
+            margin-bottom: 0.4%;
+            width: 100%;
+            background-color: $darkBlue;
+        }
+        .searchButton{
+            padding:0;
         }
     }
-    p{
-        color: $darkBlue;
-        display: inline-block;
-    }  
-    hr{
-        display: inline-block;
-        margin-bottom: 0.4%;
-        width: 88%;
-        background-color: $darkBlue;
-    }
+   
+   
     .myTable{
         width: 100%;
         thead{
             width: 100%;
             background-color: $darkBlue;
             color: #fff;
+            .topFilter{
+                display: inline-block;
+                transform:rotate(-90deg);
+                cursor: pointer;
+            }
+            .botttomFilter{
+                display: inline-block;
+                transform:rotate(90deg);
+                cursor: pointer;
+            }
         }
         tbody{
             width: 100%;
@@ -101,6 +114,11 @@ main{
             margin-bottom: 0;
         }
         .myContainer{
+            .mainTopPart{
+                .logButtons{
+                    margin-bottom: 3%;
+                }
+            }
             width: 90%;
             margin: auto;
             overflow-x: auto;
