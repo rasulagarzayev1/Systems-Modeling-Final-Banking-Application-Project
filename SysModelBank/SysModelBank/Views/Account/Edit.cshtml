@@ -1,0 +1,40 @@
+﻿@using SysModelBank.Data.Enums
+
+@model SysModelBank.Models.Identity.UserModel
+@inject SysModelBank.Services.Settings.ICurrencyService _currencyService
+
+<div class="container myContainer">
+    <h1>User overview</h1>
+    <div class="row">
+        <div class="col-md-5 mt-3 mainParts firstPart">
+            <form style="display: contents;" asp-action="SaveEdit">
+                <p><b>Firstname: </b>@Html.EditorFor(x => x.Firstname)</p>
+                <p><b>Lastname: </b>@Html.EditorFor(x => x.Lastname)</p>
+                <p><b>Username: </b><input asp-for="Username" readonly /></p>
+                <p><b>Email: </b>@Html.EditorFor(x => x.Email)</p>
+                <p><b>Phone: </b>@Html.EditorFor(x => x.Phone)</p>
+                <p><b>Address: </b>@Html.EditorFor(x => x.Address)</p>
+                <p><b>Status: </b>@Model.Status</p>
+                <input type="submit" class="btn btn-outline-light" value="Save" />
+            </form>
+        </div>
+        <div class="col-md-5 mt-3 offset-md-2 mainParts secondPart">
+            <p><b>Default currency: </b>@Model.Currency.Name</p>
+            <div class="dropdown">
+                <button class="btn btn-block btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <b>Change currency</b>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var currency in await _currencyService.GetAllAsync())
+                    {
+                        <form style="display: contents;" asp-controller="Account" asp-action="SetCurrency">
+                            @Html.Hidden("currencyId", currency.Id)
+                            <button type="submit" class="dropdown-item">@currency.Name</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

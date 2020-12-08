@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysModelBank", "SysModelBank\SysModelBank.csproj", "{A675A582-35EF-4BCA-BC0E-683F73F5879E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysModelBank", "SysModelBank\SysModelBank.csproj", "{A675A582-35EF-4BCA-BC0E-683F73F5879E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -28,6 +28,31 @@ namespace SysModelBank.Controllers
             return View(MapToUserModel(user));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var user = await _userRepository.GetAsync(User.Id());
+
+            return View(MapToUserModel(user));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveEdit(UserModel model)
+        {
+            var user = await _userRepository.GetAsync(User.Id());
+
+            user.Firstname = model.Firstname;
+            user.Lastname = model.Lastname;
+            user.UserName = model.Username;
+            user.PhoneNumber = model.Phone;
+            user.Address = model.Address;
+            user.Email = model.Email;
+
+            await _userRepository.UpdateAsync(user);
+
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAccount()
         {

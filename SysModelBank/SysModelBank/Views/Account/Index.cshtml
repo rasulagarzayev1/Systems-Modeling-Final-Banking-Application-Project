@@ -7,13 +7,14 @@
     <h1>User overview</h1>
     <div class="row">
         <div class="col-md-5 mt-3 mainParts firstPart">
-            <p><b>Name: </b>@Model.Firstname @Model.Lastname</p>
+            <p><b>Firstname: </b>@Model.Firstname</p>
+            <p><b>Lastname: </b>@Model.Lastname</p>
             <p><b>Email: </b>@Model.Email</p>
             <p><b>Username: </b>@Model.Username</p>
             <p><b>Phone: </b>@Model.Phone</p>
             <p><b>Address: </b>@Model.Address</p>
             <p><b>Status: </b>@Model.Status</p>
-            <a class="btn btn-outline-light" href="">Edit</a>
+            <a asp-action="Edit" class="btn btn-outline-light">Edit</a>
             @if (Model.Status == UserStatus.Active)
             {
                 <form style="display: contents;" asp-controller="User" asp-action="RequestDelete">
