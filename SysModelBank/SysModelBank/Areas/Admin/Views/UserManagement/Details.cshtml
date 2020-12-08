@@ -17,7 +17,7 @@
             </div>
         }
         <div class="col-md-1">
-            <a class="editAccount btn btn-block mt-2" href="">Edit</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="editAccount btn btn-block mt-2">Edit</a>
         </div>
         <div class="col-md-1">
             <form style="display: contents;" asp-area="Admin" asp-controller="UserManagement" asp-action="Delete">
@@ -32,9 +32,10 @@
             <h4 class="mt-4 mb-4">Contact information</h4>
             <div class="mainParts firstPart">
                 <p><b>Name: </b>@Model.Firstname @Model.Lastname</p>
+                <p><b>Username: </b>@Model.Username</p>
                 <p><b>Email: </b>@Model.Email</p>
                 <p><b>Phone: </b>@Model.Phone</p>
-                <p><b>User name: </b>@Model.UserName</p>
+                <p><b>Address: </b>@Model.Address</p>
                 <p><b>Permission level: </b>@Model.Role</p>
             </div>
         </div>

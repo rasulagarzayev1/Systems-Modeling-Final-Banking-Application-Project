@@ -1,0 +1,37 @@
+﻿@model SysModelBank.Areas.Admin.Models.UserManagement.UserDetail
+
+<link rel="stylesheet" href="~/css/admin_one_account.css">
+
+<div class="container myContainer">
+    <form style="display: contents;" asp-action="SaveEdit" asp-route-id="@Model.Id">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>Account - John Doe</h1>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="editAccount btn btn-block mt-2" href="">Save</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 mt-3 mb-4">
+                <h4 class="mt-4 mb-4">Contact information</h4>
+                <div class="mainParts firstPart">
+                    <p><b>Firstname: </b>@Html.EditorFor(x => x.Firstname)</p>
+                    <p><b>Lastname: </b>@Html.EditorFor(x => x.Lastname)</p>
+                    <p><b>Username: </b><input asp-for="Username" readonly /></p>
+                    <p><b>Email: </b>@Html.EditorFor(x => x.Email)</p>
+                    <p><b>Phone: </b>@Html.EditorFor(x => x.Phone)</p>
+                    <p><b>Address: </b>@Html.EditorFor(x => x.Address)</p>
+                </div>
+            </div>
+
+            <div class="col-md-5 mt-3 offset-md-2 mb-4">
+                <h4 class="mt-4 mb-4">Account details</h4>
+                <div class="mainParts secondPart">
+                    <p><b>Account nr:</b> 123456789012</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

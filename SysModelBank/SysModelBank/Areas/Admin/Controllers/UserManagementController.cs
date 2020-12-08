@@ -95,6 +95,31 @@ namespace SysModelBank.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var user = await _userRepository.GetAsync(id);
+
+            return View(await MapToDetail(user));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveEdit(int id, UserDetail model)
+        {
+            var user = await _userRepository.GetAsync(id);
+
+            user.Firstname = model.Firstname;
+            user.Lastname = model.Lastname;
+            user.UserName = model.Username;
+            user.PhoneNumber = model.Phone;
+            user.Address = model.Address;
+            user.Email = model.Email;
+
+            await _userRepository.UpdateAsync(user);
+
+            return RedirectToAction("Details", new { id });
+        }
+
         private async Task<UserListItem> MapToListItem(User user)
         {
             return new UserListItem
@@ -114,7 +139,7 @@ namespace SysModelBank.Areas.Admin.Controllers
                 Id = user.Id,
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
-                UserName = user.UserName,
+                Username = user.UserName,
                 Address = user.Address,
                 Email = user.Email,
                 Phone = user.PhoneNumber,
