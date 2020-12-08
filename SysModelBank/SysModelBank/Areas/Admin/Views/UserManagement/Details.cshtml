@@ -1,0 +1,49 @@
+﻿@model SysModelBank.Areas.Admin.Models.UserManagement.UserDetail
+
+<link rel="stylesheet" href="~/css/admin_one_account.css">
+
+<div class="container myContainer">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Account - John Doe</h1>
+        </div>
+        @if (Model.Status == SysModelBank.Data.Enums.UserStatus.PendingVerification)
+        {
+            <div class="col-md-1">
+                <form style="display: contents;" asp-area="Admin" asp-controller="UserManagement" asp-action="Verify">
+                    @Html.HiddenFor(x => x.Id)
+                    <button type="submit" class="editAccount btn btn-block mt-2">Verify</button>
+                </form>
+            </div>
+        }
+        <div class="col-md-1">
+            <a class="editAccount btn btn-block mt-2" href="">Edit</a>
+        </div>
+        <div class="col-md-1">
+            <form style="display: contents;" asp-area="Admin" asp-controller="UserManagement" asp-action="Delete">
+                @Html.HiddenFor(x => x.Id)
+                <button type="submit" class="deleteAccount btn btn-block mt-2">Delete</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 mt-3 mb-4">
+            <h4 class="mt-4 mb-4">Contact information</h4>
+            <div class="mainParts firstPart">
+                <p><b>Name: </b>@Model.Firstname @Model.Lastname</p>
+                <p><b>Email: </b>@Model.Email</p>
+                <p><b>Phone: </b>@Model.Phone</p>
+                <p><b>User name: </b>@Model.UserName</p>
+                <p><b>Permission level: </b>@Model.Role</p>
+            </div>
+        </div>
+
+        <div class="col-md-5 mt-3 offset-md-2 mb-4">
+            <h4 class="mt-4 mb-4">Account details</h4>
+            <div class="mainParts secondPart">
+                <p><b>Account nr:</b> 123456789012</p>
+            </div>
+        </div>
+    </div>
+</div>
