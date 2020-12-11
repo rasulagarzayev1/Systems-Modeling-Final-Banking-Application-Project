@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\TransactionsOverview\" />
     <Folder Include="Models\Admin\" />
   </ItemGroup>
 

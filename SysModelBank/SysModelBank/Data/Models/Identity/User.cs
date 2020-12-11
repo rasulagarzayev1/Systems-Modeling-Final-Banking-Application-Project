@@ -32,6 +32,8 @@ namespace SysModelBank.Data.Models.Identity
         public virtual ICollection<Account> Accounts { get; set; }
 
         public virtual Currency Currency { get; set; }
+
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 
     public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>

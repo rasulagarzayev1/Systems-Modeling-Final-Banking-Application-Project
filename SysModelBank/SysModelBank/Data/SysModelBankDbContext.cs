@@ -14,6 +14,8 @@ namespace SysModelBank.Data
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
 
+        public virtual DbSet<Transaction> Transactions { get; set; }
+
         public SysModelBankDbContext(DbContextOptions<SysModelBankDbContext> options)
             : base(options)
         {
@@ -29,6 +31,9 @@ namespace SysModelBank.Data
             new UserDataSeeder().Add(builder);
             new RoleDataSeeder().Add(builder);
             new UserRoleDataSeeder().Add(builder);
+
+            builder.Entity<Transaction>().HasOne(u => u.SenderAccount).WithMany(u => u.SentTransactions);
+            builder.Entity<Transaction>().HasOne(u => u.RecipientAccount).WithMany(u => u.RecievedTransactions);
         }
     }
 }
