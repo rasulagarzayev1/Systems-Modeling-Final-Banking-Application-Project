@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/userIndex.css">
+    <link rel="stylesheet" href="css/clientTransactionOverview.css">
     <title>Document</title>
 </head>
 
@@ -45,18 +45,21 @@
     <main>
         <div class="container myContainer">
             <div class="row">
-                <div class="col-md-8">
-                    <h1 class="mt-3 mb-3">Welcome, John Doe</h1>
+                <div class="col-md-10">
+                    <h1 class="mt-3 mb-3">Transactions</h1>
                 </div>
-                <div class="col-md-2">
-                    <h3 class="mt-4">265.78 <span>EUR</span></h3>
-                </div>
-                <div class="col-md-2">
-                    <a class="createAccount btn mt-4" href="">New Transaction</a>
-                </div>
-
+                <div class="col-md-2"><a class="createSeed btn btn-block mt-4" href="">Seed transaction</a></div>
             </div>
-            <p>Recent transactions:</p>
+
+			<div class ="row">
+				<div class="col-md-9"></div>
+				<div class="col-md-3">
+					<input placeholder="Search" type="text" name="" id="search">
+                    <button class="searchButton logButtons">🔍</button>
+				</div>
+			</div>
+
+            <p>Undo requests</p>
             <hr>
             <table class="myTable">
                 <thead>
@@ -65,50 +68,113 @@
                         <th>Date:</th>
                         <th>From:</th>
                         <th>To:</th>
+						<th>Amount:</th>
+                        <th></th>
+						<th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th>#1234</th>
-                        <td><b>25.11.2020</b></td>
-                        <td><b></b>John Doe</b></td>
+                        <td><b>25.10.2020</b></td>
                         <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
                     </tr>
-                    <tr>
+					<tr>
                         <th>#1234</th>
-                        <td><b>25.11.2020</b></td>
-                        <td><b></b>John Doe</b></td>
+                        <td><b>25.10.2020</b></td>
                         <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
                     </tr>
-                    <tr>
+					<tr>
                         <th>#1234</th>
-                        <td><b>25.11.2020</b></td>
-                        <td><b></b>John Doe</b></td>
+                        <td><b>25.10.2020</b></td>
                         <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
+                    </tr>
+					<tr>
+                        <th>#1234</th>
+                        <td><b>25.10.2020</b></td>
+                        <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
                     </tr>
 
                 </tbody>
             </table>
-            <div class="col-12 mt-5 confirmPart">
-                <label for=""><b>Enter transaction code:</b></label>
-                <input type="text" name="" id="">
-                <button class=" confirm">Confirm</button>
-            </div>
+			
+            <p>Past transactions</p>
+            <hr>
+            
+			<table class="myTable">
+                <thead>
+                    <tr>
+                        <th>ID:</th>
+                        <th>Date:</th>
+                        <th>From:</th>
+                        <th>To:</th>
+						<th>Amount:</th>
+                        <th></th>
+						<th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>#1234</th>
+                        <td><b>25.10.2020</b></td>
+                        <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
+                    </tr>
+					<tr>
+                        <th>#1234</th>
+                        <td><b>25.10.2020</b></td>
+                        <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
+                    </tr>
+					<tr>
+                        <th>#1234</th>
+                        <td><b>25.10.2020</b></td>
+                        <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
+                    </tr>
+					<tr>
+                        <th>#1234</th>
+                        <td><b>25.10.2020</b></td>
+                        <td><b>Mary Lake</b></td>
+                        <td><b>John Smith</b></td>
+						<td><b>200<b><td>
+                        <td><a href="">View</a></td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
     </main>
     <footer class="mt-5">
         <p>Copyright © 2020. All rights reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
