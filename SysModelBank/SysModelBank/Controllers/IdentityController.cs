@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SysModelBank.Services.Logger;
@@ -71,7 +72,11 @@ namespace SysModelBank.Controllers
 
             if (!result.Succeeded)
             {
-                ViewBag.Notification = new NotificationModel("Account creation failed!: " + string.Join(", ", result.Errors)).asError();
+                var error = result.Errors.ElementAtOrDefault(0);
+                var errorMessage = "Account creation failed!";
+                if (error != null)
+                    errorMessage = error.Description;
+                ViewBag.Notification = new NotificationModel(errorMessage).asError();
                 return View();
             }
 
