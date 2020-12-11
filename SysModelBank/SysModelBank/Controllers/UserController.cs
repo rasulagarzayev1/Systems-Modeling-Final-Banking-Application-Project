@@ -32,6 +32,8 @@ namespace SysModelBank.Controllers
         {
             var user = await _userRepository.GetAsync(User.Id());
 
+            if (user.Status != UserStatus.PendingDeletion) return RedirectToAction("Index", "Account");
+
             user.Status = UserStatus.Active;
 
             await _userRepository.UpdateAsync(user);

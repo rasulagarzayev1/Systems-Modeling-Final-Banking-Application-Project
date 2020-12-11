@@ -4,85 +4,107 @@
 
 <div class="container myContainer">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <h1 class="mt-3 mb-3">Users</h1>
         </div>
-        <div class="col-md-2"><a class="createAccount btn btn-block mt-4" href="">Create User</a></div>
-
     </div>
-    <p>Awaiting approval</p>
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">Awaiting approval</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="myTable">
+                    <thead>
+                    <tr>
+                        <th>ID:</th>
+                        <th>Name:</th>
+                        <th>Accounts:</th>
+                        <th>Permission level:</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var user in Model.PendingUsers)
+                    {
+                        <tr>
+                            <th>@user.Id</th>
+                            <td><b>@user.Firstname @user.Lastname</b></td>
+                            <td><b>@user.AccountCount</b></td>
+                            <td><b>@user.Role</b></td>
+                            <td><a asp-area="Admin" asp-controller="UserManagement" asp-action="Details" asp-route-id="@user.Id">View</a></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <hr>
-    <table class="myTable">
-        <thead>
-            <tr>
-                <th>ID:</th>
-                <th>Name:</th>
-                <th>Accounts:</th>
-                <th>Permission level:</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model.PendingUsers)
-            {
-                <tr>
-                    <th>@user.Id</th>
-                    <td><b>@user.Firstname @user.Lastname</b></td>
-                    <td><b>@user.AccountCount</b></td>
-                    <td><b>@user.Role</b></td>
-                    <td><a asp-area="Admin" asp-controller="UserManagement" asp-action="Details" asp-route-id="@user.Id">View</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <p>Awaiting deletion</p>
-    <hr>
-    <table class="myTable">
-        <thead>
-            <tr>
-                <th>ID:</th>
-                <th>Name:</th>
-                <th>Accounts:</th>
-                <th>Permission level:</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model.DeletingUsers)
-            {
-                <tr>
-                    <th>@user.Id</th>
-                    <td><b>@user.Firstname @user.Lastname</b></td>
-                    <td><b>@user.AccountCount</b></td>
-                    <td><b>@user.Role</b></td>
-                    <td><a asp-area="Admin" asp-controller="UserManagement" asp-action="Details" asp-route-id="@user.Id">View</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <p>Active users</p>
-    <hr>
-    <table class="myTable">
-        <thead>
-            <tr>
-                <th>ID:</th>
-                <th>Name:</th>
-                <th>Accounts:</th>
-                <th>Permission level:</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model.Users)
-            {
-                <tr>
-                    <th>@user.Id</th>
-                    <td><b>@user.Firstname @user.Lastname</b></td>
-                    <td><b>@user.AccountCount</b></td>
-                    <td><b>@user.Role</b></td>
-                    <td><a asp-area="Admin" asp-controller="UserManagement" asp-action="Details" asp-route-id="@user.Id">View</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">Awaiting deletion</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="myTable">
+                    <thead>
+                    <tr>
+                        <th>ID:</th>
+                        <th>Name:</th>
+                        <th>Accounts:</th>
+                        <th>Permission level:</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var user in Model.DeletingUsers)
+                    {
+                        <tr>
+                            <th>@user.Id</th>
+                            <td><b>@user.Firstname @user.Lastname</b></td>
+                            <td><b>@user.AccountCount</b></td>
+                            <td><b>@user.Role</b></td>
+                            <td><a asp-area="Admin" asp-controller="UserManagement" asp-action="Details" asp-route-id="@user.Id">View</a></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">Active users</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="myTable">
+                    <thead>
+                    <tr>
+                        <th>ID:</th>
+                        <th>Name:</th>
+                        <th>Accounts:</th>
+                        <th>Permission level:</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <th>@user.Id</th>
+                            <td><b>@user.Firstname @user.Lastname</b></td>
+                            <td><b>@user.AccountCount</b></td>
+                            <td><b>@user.Role</b></td>
+                            <td><a asp-area="Admin" asp-controller="UserManagement" asp-action="Details" asp-route-id="@user.Id">View</a></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
