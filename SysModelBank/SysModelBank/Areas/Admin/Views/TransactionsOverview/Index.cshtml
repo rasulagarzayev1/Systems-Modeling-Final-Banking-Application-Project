@@ -1,0 +1,73 @@
+﻿@model SysModelBank.Areas.Admin.Models.TransactionOverview.TransactionList
+
+<link rel="stylesheet" href="~/css/transaction.css">
+
+<div class="container myContainer">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="mt-3 mb-3">Transactions</h1>
+        </div>
+        <div class="col-md-2"><a class="createSeed btn btn-block mt-4" href="">Seed transaction</a></div>
+    </div>
+
+    <p>Undo requests</p>
+    <hr>
+    <table class="myTable">
+        <thead>
+            <tr>
+                <th>ID:</th>
+                <th>Date:</th>
+                <th>From:</th>
+                <th>To:</th>
+                <th>Amount:</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model.PendingUndoing)
+            {
+            <tr>
+                <th>@transaction.Id</th>
+                <td><b>@transaction.Date</b></td>
+                <td><b>@transaction.SenderName</b></td>
+                <td><b>@transaction.RecipientName</b></td>
+                <td><b>@transaction.Amount</b></td>
+                <td></td>
+                <td><a asp-area="Admin" asp-controller="TransactionOverview" asp-action="Details" asp-route-id="@transaction.Id">View</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Past transactions</p>
+    <hr>
+
+    <table class="myTable">
+        <thead>
+            <tr>
+                <th>ID:</th>
+                <th>Date:</th>
+                <th>From:</th>
+                <th>To:</th>
+                <th>Amount:</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model.PendingUndoing)
+            {
+                <tr>
+                    <th>@transaction.Id</th>
+                    <td><b>@transaction.Date</b></td>
+                    <td><b>@transaction.SenderName</b></td>
+                    <td><b>@transaction.RecipientName</b></td>
+                    <td><b>@transaction.Amount</b></td>
+                    <td></td>
+                    <td><a asp-area="Admin" asp-controller="TransactionOverview" asp-action="Details" asp-route-id="@transaction.Id">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

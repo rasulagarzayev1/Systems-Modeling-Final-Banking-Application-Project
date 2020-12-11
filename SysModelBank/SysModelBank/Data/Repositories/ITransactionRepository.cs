@@ -2,7 +2,7 @@
 
 namespace SysModelBank.Data.Repositories
 {
-    interface ITransactionRepository : IRepository<Transaction>
+    public interface ITransactionRepository : IRepository<Transaction>
     {
     }
 }

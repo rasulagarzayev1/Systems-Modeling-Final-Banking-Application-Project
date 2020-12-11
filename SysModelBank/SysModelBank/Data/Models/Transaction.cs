@@ -16,7 +16,7 @@ namespace SysModelBank.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public TransactionStatus Status { get; set; } = TransactionStatus.Pending;
+        public TransactionStatus Status { get; set; } = TransactionStatus.Done;
 
         [Required]
         public string Description { get; set; }
