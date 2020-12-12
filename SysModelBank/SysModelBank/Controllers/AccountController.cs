@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using SysModelBank.Data.Models;
 using SysModelBank.Data.Models.Identity;
 using SysModelBank.Data.Repositories;
@@ -7,6 +8,7 @@ using SysModelBank.Extensions;
 using SysModelBank.Models.Identity;
 using SysModelBank.Models.Settings;
 using System.Threading.Tasks;
+using SysModelBank.Models;
 using SysModelBank.Services.Logger;
 
 namespace SysModelBank.Controllers
@@ -28,12 +30,19 @@ namespace SysModelBank.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAccount()
         {
-             await _accountRepository.CreateAsync(new Account
+            var user = await _userRepository.GetAsync(User.Id());
+
+            if (user.Accounts.Count >= 5)
+            {
+                return RedirectToAction("Index", "User", new NotificationModel("You cannot have more than 5 accounts!").asError());
+            }
+
+            await _accountRepository.CreateAsync(new Account
             {
                 UserId = User.Id()
             });
 
-            return RedirectToAction("Index", "Overview");
+            return RedirectToAction("Index", "User", new NotificationModel("Account creation successful!").asSuccess());
         }
     }
 }

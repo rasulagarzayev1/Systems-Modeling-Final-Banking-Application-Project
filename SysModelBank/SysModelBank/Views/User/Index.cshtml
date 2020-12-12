@@ -6,7 +6,7 @@
 <div class="container myContainer">
     <h1>User overview</h1>
     <div class="row">
-        <div class="col-md-5 mt-3 mainParts firstPart">
+        <div class="col-md-4 ml-3 mainParts firstPart">
             <p><b>Name: </b>@Model.Firstname @Model.Lastname</p>
             <p><b>Email: </b>@Model.Email</p>
             <p><b>Username: </b>@Model.Username</p>
@@ -17,33 +17,55 @@
             @if (Model.Status == UserStatus.Active)
             {
                 <form style="display: contents;" asp-controller="User" asp-action="RequestDelete">
-                    <button type="submit" class="btn deleteButton">Delete</button>
+                    <button type="submit" class="btn deleteButton">Request deletion</button>
                 </form>
             }
             @if (Model.Status == UserStatus.PendingDeletion)
             {
                 <form style="display: contents;" asp-controller="User" asp-action="CancelDelete">
-                    <button type="submit" class="btn deleteButton">Cancel delete</button>
+                    <button type="submit" class="btn deleteButton">Cancel deletion request</button>
                 </form>
             }
         </div>
-            <div class="col-md-5 mt-3 offset-md-2 mainParts secondPart">
-                <p><b>Default currency: </b>@Model.Currency.Name</p>
-                <div class="dropdown">
-                    <button class="btn btn-block btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <b>Change currency</b>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach (var currency in await _currencyService.GetAllAsync())
-                        {
-                            <form style="display: contents;" asp-controller="User" asp-action="SetCurrency">
-                                @Html.Hidden("currencyId", currency.Id)
-                                <button type="submit" class="dropdown-item">@currency.Name</button>
-                            </form>
-                        }
-                        </div>
+        <div class="col-md-4 ml-3 mainParts firstPart">
+            <table class="myTable" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Account:</th>
+                    <th>Balance:</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach (var account in Model.Accounts)
+                    {
+                        <tr>
+                            <td>@account.Id</td>
+                            <td>@account.Balance @Model.Currency.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <form style="display: contents;" asp-controller="Account" asp-action="CreateAccount">
+                <button type="submit" class="btn btn-outline-light" style="left: 5%; bottom: 5%; position: absolute;">Create bank account</button>
+            </form>
+        </div>
+        <div class="col-md-3 ml-3 mainParts secondPart">
+            <p><b>Default currency: </b>@Model.Currency.Name</p>
+            <div class="dropdown">
+                <button class="btn btn-block btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <b>Change currency</b>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var currency in await _currencyService.GetAllAsync())
+                    {
+                        <form style="display: contents;" asp-controller="User" asp-action="SetCurrency">
+                            @Html.Hidden("currencyId", currency.Id)
+                            <button type="submit" class="dropdown-item">@currency.Name</button>
+                        </form>
+                    }
                 </div>
             </div>
+        </div>
     </div>
 </div>

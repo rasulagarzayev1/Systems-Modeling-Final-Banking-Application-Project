@@ -51,24 +51,4 @@ namespace SysModelBank.Data.Models.Identity
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
-
-    public static class UserExtensions
-    {
-        public static UserModel ToUserModel(this User user) =>
-            new UserModel
-            {
-                Address = user.Address,
-                Email = user.Email,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Phone = user.PhoneNumber,
-                Username = user.UserName,
-                Status = user.Status,
-                Currency = new CurrencyModel
-                {
-                    Id = user.CurrencyId,
-                    Name = user.Currency.Name
-                }
-            };
-    }
 }

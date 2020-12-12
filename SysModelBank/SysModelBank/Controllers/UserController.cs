@@ -17,7 +17,7 @@ namespace SysModelBank.Controllers
 
         public UserController(IUserRepository userRepository, IBankLogger logger)
         {
-            _userRepository = userRepository;
+            _userRepository = userRepository; 
             _logger = logger;
         }
 
