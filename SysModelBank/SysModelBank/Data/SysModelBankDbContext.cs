@@ -16,6 +16,7 @@ namespace SysModelBank.Data
         public virtual DbSet<Currency> Currency { get; set; }
 
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Transaction> TransactionCodes { get; set; }
 
         public SysModelBankDbContext(DbContextOptions<SysModelBankDbContext> options)
             : base(options)
