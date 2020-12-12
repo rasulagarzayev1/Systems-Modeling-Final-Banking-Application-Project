@@ -55,12 +55,12 @@ namespace SysModelBank.Areas.Admin.Controllers
             });
         }
 
-        //public async Task<IActionResult> Details(int id)
-        //{
-        //    var transaction = await _transactionRepository.GetAsync(id);
+        public async Task<IActionResult> Details(int id)
+        {
+            var transaction = await _transactionRepository.GetAsync(id);
 
-        //    return View(await MapToDetail(transaction));
-        //}
+            return View(await MapToDetail(transaction));
+        }
 
         //[HttpPost]
         //public async Task<IActionResult> Undo(int id)
@@ -120,6 +120,25 @@ namespace SysModelBank.Areas.Admin.Controllers
                 RecipientName = RecivingUser.Firstname + " " + RecivingUser.Lastname,
                 Date = transaction.CreationTime,
                 Amount = transaction.Amount
+            };
+        }
+
+        private async Task<TransactionDetail> MapToDetail(Transaction transaction)
+        {
+            User SendingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.SenderAccountId)).UserId));
+            User RecivingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.RecipientAccountId)).UserId));
+
+            return new TransactionDetail
+            {
+                Id = transaction.Id,
+                Status = transaction.Status,
+                Amount = transaction.Amount,
+                CreationTime = transaction.CreationTime,
+                SenderAccountId = transaction.SenderAccountId,
+                SenderName = SendingUser.Firstname + " " + SendingUser.Lastname,
+                RecipientAccountId = transaction.RecipientAccountId,
+                RecipientName = RecivingUser.Firstname + " " + RecivingUser.Lastname,
+                Description = transaction.Description
             };
         }
 

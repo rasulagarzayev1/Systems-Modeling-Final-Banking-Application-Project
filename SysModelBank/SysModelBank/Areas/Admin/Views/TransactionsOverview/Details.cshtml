@@ -1,0 +1,35 @@
+﻿@model SysModelBank.Areas.Admin.Models.TransactionOverview.TransactionDetail
+
+<link rel="stylesheet" href="~/css/detailedTransactionView.css">
+
+<div class="container myContainer">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Transaction #@Model.Id</h1>
+        </div>
+        @if (Model.Status == SysModelBank.Data.Enums.TransactionStatus.PendingCancellation)
+        {
+            <div class="col-md-1">
+                <form style="display: contents;" asp-area="Admin" asp-controller="TransactionsOverview" asp-action="Undo">
+                    @Html.HiddenFor(x => x.Id)
+                    <button type="submit" class="editAccount btn btn-block mt-2">Approve undoing</button>
+                </form>
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 mt-3 mb-4">
+            <h4 class="mt-4 mb-4">Transaction information</h4>
+            <div class="mainParts firstPart">
+                <p><b>Amount: </b>@Model.Amount</p>
+                <p><b>Creation time: </b>@Model.CreationTime</p>
+                <p><b>Sender id: </b>@Model.SenderAccountId</p>
+                <p><b>Sender name: </b>@Model.SenderName</p>
+                <p><b>Reciever id: </b>@Model.RecipientAccountId</p>
+                <p><b>Reciever name: </b>@Model.RecipientName</p>
+                <p><b>Description: </b>@Model.Description</p>
+            </div>
+        </div>
+    </div>
+</div>
