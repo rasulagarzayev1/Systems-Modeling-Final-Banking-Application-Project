@@ -62,22 +62,28 @@ namespace SysModelBank.Areas.Admin.Controllers
             return View(await MapToDetail(transaction));
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Undo(int id)
-        //{
-        //    if (!User.IsInRole(Role.Admin))
-        //    {
-        //        return RedirectToAction("Details", new { id });
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Undo(int id)
+        {
+            if (!User.IsInRole(Role.Admin))
+            {
+                return RedirectToAction("Details", new { id });
+            }
 
-        //    var transaction = await _transactionRepository.GetAsync(id);
+            var transaction = await _transactionRepository.GetAsync(id);
 
-        //    transaction.Status = TransactionStatus.Cancelled;
+            transaction.Status = TransactionStatus.Cancelled;
 
-        //    await _transactionRepository.UpdateAsync(transaction);
+            await _transactionRepository.UpdateAsync(transaction);
 
-        //    return RedirectToAction("Index");
-        //}
+            var account = await _accountRepository.GetAsync(transaction.RecipientAccountId);
+
+            account.Balance -= transaction.Amount;
+
+            await _accountRepository.UpdateAsync(account);
+
+            return RedirectToAction("Index");
+        }
 
         public async Task<IActionResult> Seed()
         {
