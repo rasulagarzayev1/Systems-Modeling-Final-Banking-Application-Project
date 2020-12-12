@@ -1,4 +1,6 @@
-﻿using SysModelBank.Data.Enums;
+﻿using System.Collections.Generic;
+using SysModelBank.Data.Enums;
+using SysModelBank.Models.Accounts;
 using SysModelBank.Models.Settings;
 
 namespace SysModelBank.Models.Identity
@@ -19,8 +21,11 @@ namespace SysModelBank.Models.Identity
 
         public string Address { get; set; }
 
+
         public UserStatus Status { get; set; }
 
         public CurrencyModel Currency { get; set; }
+
+        public IEnumerable<AccountModel> Accounts { get; set; } = new List<AccountModel>();
     }
 }

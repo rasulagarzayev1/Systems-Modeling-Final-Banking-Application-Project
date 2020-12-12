@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SysModelBank.Services.Logger;
 
 namespace SysModelBank.Areas.Admin.Controllers
 {
@@ -21,12 +22,14 @@ namespace SysModelBank.Areas.Admin.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly ITransactionRepository _transactionRepository;
+        private readonly IBankLogger _logger;
 
-        public TransactionsOverviewController(IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository)
+        public TransactionsOverviewController(IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository, IBankLogger logger)
         {
             _userRepository = userRepository;
             _accountRepository = accountRepository;
             _transactionRepository = transactionRepository;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -81,6 +84,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             account.Balance -= transaction.Amount;
 
             await _accountRepository.UpdateAsync(account);
+            _logger.Log("TransactionsOverviewController", $"Transaction {transaction.Id} was undone by {HttpContext.User.Identity.Name}");
 
             return RedirectToAction("Index");
         }
@@ -111,6 +115,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             account.Balance += model.Amount;
 
             await _accountRepository.UpdateAsync(account);
+            _logger.Log("TransactionsOverviewController", $"Seed transaction with amount {model.Amount} was done by {HttpContext.User.Identity.Name} to {account.User.UserName}");
 
             return RedirectToAction("Index");
         }

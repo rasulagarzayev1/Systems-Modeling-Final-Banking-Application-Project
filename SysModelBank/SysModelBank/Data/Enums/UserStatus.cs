@@ -4,7 +4,6 @@
     {
         PendingVerification,
         Active,
-        Disabled,
         PendingDeletion,
         Deleted
     }

@@ -7,8 +7,11 @@ using SysModelBank.Data.Models.Identity;
 using SysModelBank.Models.Identity;
 using System.Threading.Tasks;
 using SysModelBank.Data.Enums;
+using SysModelBank.Data.Models.Settings;
 using SysModelBank.Services.Identity;
 using SysModelBank.Models;
+using SysModelBank.Models.Settings;
+using SysModelBank.Services.Settings;
 
 namespace SysModelBank.Controllers
 {
@@ -18,13 +21,15 @@ namespace SysModelBank.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly IBankLogger _logger;
         private readonly IUserService _userService;
+        private readonly ICurrencyService _currency;
 
-        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager, IBankLogger logger, IUserService userService)
+        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager, IBankLogger logger, IUserService userService, ICurrencyService currency)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _userService = userService;
+            _currency = currency;
         }
 
         [AllowAnonymous]
@@ -43,9 +48,10 @@ namespace SysModelBank.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (!await _userService.LoginWithPasswordAsync(model.Username, model.Password))
+            var (status, message) = await _userService.LoginWithPasswordAsync(model.Username, model.Password);
+            if (!status)
             {
-                ModelState.AddModelError(string.Empty, "Login failed");
+                ViewBag.Notification = new NotificationModel(message).asError();
                 return View("Index");
             }
 
@@ -65,7 +71,8 @@ namespace SysModelBank.Controllers
                 Address = model.Address,
                 Status = UserStatus.PendingVerification,
                 Firstname = model.Firstname,
-                Lastname = model.Lastname
+                Lastname = model.Lastname,
+                CurrencyId = Currency.EurId
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -82,9 +89,9 @@ namespace SysModelBank.Controllers
 
             ViewBag.Notification = new NotificationModel( "Account creation succeeded. Wait for admin verification!").asSuccess();
 
-            _logger.Log("IdentityController", "User " + model.Username + " was created.");
+            _logger.Log("IdentityController", "User " + model.Username + " was submitted for verification");
 
-             return RedirectToAction("Index", "Landing");
+             return RedirectToAction("Index", "Overview");
         }
 
         public async Task<IActionResult> Logout()

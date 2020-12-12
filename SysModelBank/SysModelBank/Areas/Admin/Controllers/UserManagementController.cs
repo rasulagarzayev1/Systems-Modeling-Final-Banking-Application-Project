@@ -5,8 +5,10 @@ using SysModelBank.Data.Enums;
 using SysModelBank.Data.Models.Identity;
 using SysModelBank.Data.Repositories.Identity;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using SysModelBank.Services.Logger;
 
 namespace SysModelBank.Areas.Admin.Controllers
 {
@@ -14,11 +16,13 @@ namespace SysModelBank.Areas.Admin.Controllers
     public class UserManagementController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IBankLogger _logger;
         private readonly UserManager<User> _userManager;
 
-        public UserManagementController(IUserRepository userRepository, UserManager<User> userManager)
+        public UserManagementController(IUserRepository userRepository, IBankLogger logger, UserManager<User> userManager)
         {
             _userRepository = userRepository;
+            _logger = logger;
             _userManager = userManager;
         }
 
@@ -74,6 +78,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             user.Status = UserStatus.Active;
 
             await _userRepository.UpdateAsync(user);
+            _logger.Log("UserManagementController", $"Admin {HttpContext.User.Identity.Name} verified account {user.UserName}");
 
             return RedirectToAction("Details", new { id });
         }
@@ -91,6 +96,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             user.Status = UserStatus.Deleted;
 
             await _userRepository.UpdateAsync(user);
+            _logger.Log("UserManagementController", $"Admin {HttpContext.User.Identity.Name} deleted account {user.UserName}");
 
             return RedirectToAction("Index");
         }
@@ -116,6 +122,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             user.Email = model.Email;
 
             await _userRepository.UpdateAsync(user);
+            _logger.Log("UserManagementController", $"Admin {HttpContext.User.Identity.Name} changed contact information for {user.UserName}");
 
             return RedirectToAction("Details", new { id });
         }

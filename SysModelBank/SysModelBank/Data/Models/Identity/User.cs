@@ -5,6 +5,8 @@ using SysModelBank.Data.Enums;
 using SysModelBank.Data.Models.Settings;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using SysModelBank.Models.Identity;
+using SysModelBank.Models.Settings;
 
 namespace SysModelBank.Data.Models.Identity
 {
