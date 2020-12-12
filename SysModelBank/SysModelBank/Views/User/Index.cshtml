@@ -37,7 +37,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @foreach (var currency in await _currencyService.GetAllAsync())
                         {
-                            <form style="display: contents;" asp-controller="Account" asp-action="SetCurrency">
+                            <form style="display: contents;" asp-controller="User" asp-action="SetCurrency">
                                 @Html.Hidden("currencyId", currency.Id)
                                 <button type="submit" class="dropdown-item">@currency.Name</button>
                             </form>

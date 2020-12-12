@@ -5,6 +5,8 @@ using SysModelBank.Data.Enums;
 using SysModelBank.Data.Models.Settings;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using SysModelBank.Models.Identity;
+using SysModelBank.Models.Settings;
 
 namespace SysModelBank.Data.Models.Identity
 {
@@ -48,5 +50,25 @@ namespace SysModelBank.Data.Models.Identity
             builder.HasOne(x => x.Currency).WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
         }
+    }
+
+    public static class UserExtensions
+    {
+        public static UserModel ToUserModel(this User user) =>
+            new UserModel
+            {
+                Address = user.Address,
+                Email = user.Email,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Phone = user.PhoneNumber,
+                Username = user.UserName,
+                Status = user.Status,
+                Currency = new CurrencyModel
+                {
+                    Id = user.CurrencyId,
+                    Name = user.Currency.Name
+                }
+            };
     }
 }

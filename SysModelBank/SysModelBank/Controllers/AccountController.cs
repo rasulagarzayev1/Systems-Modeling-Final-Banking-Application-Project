@@ -7,6 +7,7 @@ using SysModelBank.Extensions;
 using SysModelBank.Models.Identity;
 using SysModelBank.Models.Settings;
 using System.Threading.Tasks;
+using SysModelBank.Services.Logger;
 
 namespace SysModelBank.Controllers
 {
@@ -14,44 +15,15 @@ namespace SysModelBank.Controllers
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IUserRepository _userRepository;
-        public AccountController(IAccountRepository accountRepository, IUserRepository userRepository)
+        private readonly IBankLogger _logger;
+
+        public AccountController(IAccountRepository accountRepository, IUserRepository userRepository, IBankLogger logger)
         {
             _accountRepository = accountRepository;
             _userRepository = userRepository;
+            _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            var user = await _userRepository.GetAsync(User.Id());
-
-            return View(MapToUserModel(user));
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit()
-        {
-            var user = await _userRepository.GetAsync(User.Id());
-
-            return View(MapToUserModel(user));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SaveEdit(UserModel model)
-        {
-            var user = await _userRepository.GetAsync(User.Id());
-
-            user.Firstname = model.Firstname;
-            user.Lastname = model.Lastname;
-            user.UserName = model.Username;
-            user.PhoneNumber = model.Phone;
-            user.Address = model.Address;
-            user.Email = model.Email;
-
-            await _userRepository.UpdateAsync(user);
-
-            return RedirectToAction("Index");
-        }
 
         [HttpPost]
         public async Task<IActionResult> CreateAccount()
@@ -63,34 +35,5 @@ namespace SysModelBank.Controllers
 
             return RedirectToAction("Index", "Overview");
         }
-
-        [HttpPost]
-        public async Task<IActionResult> SetCurrency(int currencyId)
-        {
-            var user = await _userRepository.GetAsync(User.Id());
-
-            user.CurrencyId = currencyId;
-
-            await _userRepository.UpdateAsync(user);
-
-            return RedirectToAction("Index");
-        }
-
-        private UserModel MapToUserModel(User user) =>
-            new UserModel
-            {
-                Address = user.Address,
-                Email = user.Email,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Phone = user.PhoneNumber,
-                Username = user.UserName,
-                Status = user.Status,
-                Currency = new CurrencyModel
-                {
-                    Id = user.CurrencyId,
-                    Name = user.Currency.Name
-                }
-            };
     }
 }
