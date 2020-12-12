@@ -50,6 +50,7 @@ namespace SysModelBank.Controllers
             user.Email = model.Email;
 
             await _userRepository.UpdateAsync(user);
+            _logger.Log("UserController", $"User {user.UserName} changed his contact information!");
 
             return RedirectToAction("Index");
         }
@@ -62,7 +63,7 @@ namespace SysModelBank.Controllers
             user.CurrencyId = currencyId;
 
             await _userRepository.UpdateAsync(user);
-            _logger.Log("AccountController", $"User currency set to {currencyId}");
+            _logger.Log("UserController", $"User currency set to {currencyId}");
 
             return RedirectToAction("Index");
         }
@@ -75,6 +76,7 @@ namespace SysModelBank.Controllers
             user.Status = UserStatus.PendingDeletion;
 
             await _userRepository.UpdateAsync(user);
+            _logger.Log("UserController", $"{user.UserName} requested account deletion");
 
             return RedirectToAction("Index");
         }
@@ -89,6 +91,7 @@ namespace SysModelBank.Controllers
             user.Status = UserStatus.Active;
 
             await _userRepository.UpdateAsync(user);
+            _logger.Log("UserController", $"{user.UserName} cancelled account deletion request");
 
             return RedirectToAction("Index");
         }

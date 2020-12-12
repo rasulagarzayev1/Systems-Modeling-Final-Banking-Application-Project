@@ -89,7 +89,7 @@ namespace SysModelBank.Controllers
 
             ViewBag.Notification = new NotificationModel( "Account creation succeeded. Wait for admin verification!").asSuccess();
 
-            _logger.Log("IdentityController", "User " + model.Username + " was created.");
+            _logger.Log("IdentityController", "User " + model.Username + " was submitted for verification");
 
              return RedirectToAction("Index", "Overview");
         }
