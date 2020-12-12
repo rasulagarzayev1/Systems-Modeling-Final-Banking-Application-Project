@@ -50,6 +50,12 @@ namespace SysModelBank
                 x.LoginPath = "/";
                 x.LogoutPath = "/Identity";
             });
+
+            services.AddAuthorization(options => 
+            {
+                options.AddPolicy(PolicyConstants.Admin, policy => 
+                policy.RequireRole(Role.Admin));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

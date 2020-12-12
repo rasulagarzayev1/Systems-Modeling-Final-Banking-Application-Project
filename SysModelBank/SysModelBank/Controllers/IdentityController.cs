@@ -12,6 +12,7 @@ using SysModelBank.Services.Identity;
 using SysModelBank.Models;
 using SysModelBank.Models.Settings;
 using SysModelBank.Services.Settings;
+using SysModelBank.Extensions;
 
 namespace SysModelBank.Controllers
 {
@@ -35,12 +36,22 @@ namespace SysModelBank.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Overview");
+            }
+
             return View();
         }
 
         [AllowAnonymous]
         public IActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Overview");
+            }
+            
             return View();
         }
 
