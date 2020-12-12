@@ -12,5 +12,6 @@ namespace SysModelBank.Data.Repositories
         Task<TEntity> CreateAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);
+        Task<bool> RemoveAsync(TEntity entity);
     }
 }

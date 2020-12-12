@@ -14,6 +14,7 @@ namespace SysModelBank.Models.Transaction
         [BindProperty]
         public int SelectedAccountId { get; set; }
 
+        public string CurrencyLocalization { get; set; }
         public IEnumerable<SelectListItem> Accounts { get; set; }
 
         public IEnumerable<TransactionListItem> Transactions { get; set; }

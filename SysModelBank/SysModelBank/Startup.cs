@@ -94,6 +94,7 @@ namespace SysModelBank
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<ITransactionCodeRepository, TransactionCodeRepository>();
             services.AddScoped<ILogRepository, LogRepository>();
 
             // Services

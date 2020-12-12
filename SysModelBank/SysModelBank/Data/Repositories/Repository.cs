@@ -68,5 +68,26 @@ namespace SysModelBank.Data.Repositories
 
             return entity;
         }
+
+        public async Task<bool> RemoveAsync(TEntity entity)
+        {
+            DbContext.Remove(entity);
+
+            try
+            {
+                await DbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException exception)
+            {
+                if (exception.InnerException != null)
+                {
+                    throw exception.InnerException;
+                }
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }
