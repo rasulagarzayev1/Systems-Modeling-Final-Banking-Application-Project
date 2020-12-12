@@ -18,6 +18,11 @@ namespace SysModelBank.Data.DataSeeders.Identity
                 {
                     RoleId = Role.AdminId,
                     UserId = User.IshayaId
+                },
+                new IdentityUserRole<int>
+                {
+                    RoleId = Role.AdminId,
+                    UserId = User.SystemId
                 }
             );
         }

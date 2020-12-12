@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SysModelBank.Data.DataSeeders;
 using SysModelBank.Data.DataSeeders.Identity;
 using SysModelBank.Data.DataSeeders.Settings;
 using SysModelBank.Data.Models;
@@ -31,6 +32,7 @@ namespace SysModelBank.Data
             new UserDataSeeder().Add(builder);
             new RoleDataSeeder().Add(builder);
             new UserRoleDataSeeder().Add(builder);
+            new AccountDataSeeder().Add(builder);
 
             builder.Entity<Transaction>().HasOne(u => u.SenderAccount).WithMany(u => u.SentTransactions);
             builder.Entity<Transaction>().HasOne(u => u.RecipientAccount).WithMany(u => u.RecievedTransactions);

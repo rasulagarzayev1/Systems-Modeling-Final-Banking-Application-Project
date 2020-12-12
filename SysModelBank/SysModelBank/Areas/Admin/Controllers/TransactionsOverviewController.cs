@@ -7,6 +7,8 @@ using SysModelBank.Data.Models;
 using SysModelBank.Data.Models.Identity;
 using SysModelBank.Data.Repositories;
 using SysModelBank.Data.Repositories.Identity;
+using SysModelBank.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,6 +78,36 @@ namespace SysModelBank.Areas.Admin.Controllers
 
         //    return RedirectToAction("Index");
         //}
+
+        public async Task<IActionResult> Seed()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> SaveSeed(SeedTransaction model)
+        {
+            var admin = await _userRepository.GetAsync(User.Id());
+
+            var transaction = new Transaction
+            {
+                Description = model.Description,
+                Amount = model.Amount,
+                CreationTime = DateTime.Now,
+                CreatorUserId = admin.Id,
+                SenderAccountId = 999,
+                RecipientAccountId = model.RecipientId
+            };
+
+            await _transactionRepository.CreateAsync(transaction);
+
+            var account = await _accountRepository.GetAsync(model.RecipientId);
+
+            account.Balance += model.Amount;
+
+            await _accountRepository.UpdateAsync(account);
+
+            return RedirectToAction("Index");
+        }
 
         private async Task<TransactionListItem> MapToListItem(Transaction transaction)
         {

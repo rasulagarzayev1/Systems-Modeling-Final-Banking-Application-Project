@@ -7,6 +7,8 @@ namespace SysModelBank.Data.Models
 {
     public class Account : IBaseEntity
     {
+        public const int SystemId = 999;
+
         [Key]
         public int Id { get; set; }
 

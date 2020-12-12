@@ -42,6 +42,22 @@ namespace SysModelBank.Data.DataSeeders.Identity
                     Lastname = "Good",
                     ConcurrencyStamp = "393b36c9-83d5-4d5c-82e1-34a0d8551a68",
                     CurrencyId = Currency.EurId
+                },
+                new User
+                {
+                    Id = User.SystemId,
+                    Email = "admin@admin.ee",
+                    UserName = "ADMIN",
+                    NormalizedUserName = "ADMIN",
+                    NormalizedEmail = "ADMIN@ADMIN.EE",
+                    PasswordHash = "AQAAAAEAACcQAAAAEHsMGzjMkGokHqRjfxWTubUykxdrCkvbl0dt148ZjbUpQjyMiCseYeXZNPoDHj5SEw==",
+                    SecurityStamp = "ce907fd5-ccb4-4e96-a7ea-45712a14f5ef",
+                    Address = "Tartu",
+                    Status = UserStatus.Active,
+                    Firstname = "admin",
+                    Lastname = "admin",
+                    ConcurrencyStamp = "da7a4f42-ff3c-42a8-935a-62af68f978b0",
+                    CurrencyId = Currency.EurId
                 }
             );
         }

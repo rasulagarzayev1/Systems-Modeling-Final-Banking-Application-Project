@@ -14,6 +14,8 @@ namespace SysModelBank.Data.Models.Identity
 
         public const int IshayaId = 2;
 
+        public const int SystemId = 999;
+
         [Required]
         public string Firstname { get; set; }
 
@@ -41,7 +43,7 @@ namespace SysModelBank.Data.Models.Identity
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasMany(x => x.Accounts).WithOne(x => x.User)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.Currency).WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
