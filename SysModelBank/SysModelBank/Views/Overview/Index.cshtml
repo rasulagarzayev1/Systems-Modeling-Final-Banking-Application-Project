@@ -11,11 +11,12 @@
 <a asp-area="Admin" asp-controller="LogOverview" asp-action="Index">Logs</a>
 <div>
     <h4>User</h4>
+    <a asp-controller="ClientTransaction" asp-action="Index">My transactions</a>
     <hr />
     @Model.UserAccounts.Count()
-<form asp-controller="Account" asp-action="CreateAccount">
-    <input type="submit" />
-</form>
+    <form asp-controller="Account" asp-action="CreateAccount">
+        <input type="submit" />
+    </form>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
