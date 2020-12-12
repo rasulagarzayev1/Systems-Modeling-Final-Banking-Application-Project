@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SysModelBank.Data.Models
 {
-    public class Log
+    public class Log : IBaseEntity
     {
         [Key]
         public int Id { get; set; }
