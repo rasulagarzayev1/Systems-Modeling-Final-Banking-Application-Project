@@ -49,6 +49,7 @@ namespace SysModelBank
             {
                 x.LoginPath = "/";
                 x.LogoutPath = "/Identity";
+                x.AccessDeniedPath = "/Error/AccessDenied";
             });
 
             services.AddAuthorization(options => 
