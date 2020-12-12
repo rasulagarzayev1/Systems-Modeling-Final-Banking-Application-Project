@@ -91,7 +91,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Seed()
+        public IActionResult Seed()
         {
             return View();
         }

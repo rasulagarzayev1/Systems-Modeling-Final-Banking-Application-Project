@@ -79,6 +79,35 @@ namespace SysModelBank.Controllers
             });
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var transaction = await _transactionRepository.GetAsync(id);
+
+            return View(MapToDetails(transaction));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RequestUndo(int id, string description)
+        {
+            var transaction = await _transactionRepository.GetAsync(id);
+
+            transaction.Status = TransactionStatus.PendingCancellation;
+            await _transactionRepository.UpdateAsync(transaction);
+
+            return RedirectToAction("Details", new { id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CancelUndo(int id)
+        {
+            var transaction = await _transactionRepository.GetAsync(id);
+
+            transaction.Status = TransactionStatus.Done;
+            await _transactionRepository.UpdateAsync(transaction);
+
+            return RedirectToAction("Details", new { id });
+        }
+
         private async Task<TransactionListItem> MapToListItem(Transaction transaction)
         {
             User SendingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.SenderAccountId)).UserId));
@@ -90,6 +119,20 @@ namespace SysModelBank.Controllers
                 RecipientName = RecivingUser.Firstname + " " + RecivingUser.Lastname,
                 Date = transaction.CreationTime,
                 Amount = transaction.Amount
+            };
+        }
+
+        private ClientTransactionDetails MapToDetails(Transaction transaction)
+        {
+            return new ClientTransactionDetails
+            {
+                Id = transaction.Id,
+                Amount = transaction.Amount,
+                CreationTime = transaction.CreationTime,
+                Description = transaction.Description,
+                RecipientName = transaction.RecipientAccount.User.Firstname + " " + transaction.RecipientAccount.User.Lastname,
+                SenderName = transaction.SenderAccount.User.Firstname + " " + transaction.SenderAccount.User.Lastname,
+                Status = transaction.Status
             };
         }
     }
