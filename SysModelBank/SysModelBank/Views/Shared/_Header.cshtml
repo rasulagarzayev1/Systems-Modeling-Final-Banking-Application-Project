@@ -12,28 +12,24 @@
         <div class="collapse navbar-collapse row" id="navbarNavAltMarkup">
             <div class="col-md-1"></div>
             <div class="navbar-nav col-md-9">
-                <a class="nav-link active" asp-area="" asp-controller="Overview" asp-action="Index">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Transactions</a>
-                <a class="nav-link" href="#">History</a>
-            </div>
-            <div class="navbar-nav col-md-2">
                 @if (!SignInManager.IsSignedIn(User))
                 {
-                    <a class="nav-link" asp-area="" asp-controller="Identity" asp-action="Index"><b>Login</b></a>
+                    <a class="nav-link ml-auto" asp-area="" asp-controller="Identity" asp-action="Index"><b>Login</b></a>
                     <a class="nav-link" asp-area="" asp-controller="Identity" asp-action="Register"><b>Register</b></a>
                 }
                 else
                 {
-                    <div class="col-12 dropdown myAccountDrop">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <b>Account</b>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a asp-area="" asp-controller="User" asp-action="Index" class="dropdown-item">Account info</a>
-                            <a asp-area="" asp-controller="Identity" asp-action="Logout" class="dropdown-item">Log out</a>
+                    <a class="nav-link" asp-area="" asp-controller="Overview" asp-action="Index">Overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="ClientTransaction" asp-action="Index">Transactions</a>
+                    <a class="nav-link" asp-area="" asp-controller="ClientTransaction" asp-action="New">New transaction</a>
+                    <form asp-controller="ClientTransaction" asp-action="New" method="get">
+                        <div class="d-flex flex-row justify-content-center">
+                            <div class="p-2"><input type="text" name="transaction_code" id="transaction_code" placeholder="Enter transaction code"></div>
+                            <div class="p-2 confirmPart"><button class="confirm">Confirm</button></div>
                         </div>
-                    </div>
+                    </form>
+                    <a class="nav-link ml-auto" asp-area="" asp-controller="User" asp-action="Index" class="dropdown-item">Account info</a>
+                    <a class="nav-link" asp-area="" asp-controller="Identity" asp-action="Logout" class="dropdown-item">Log out</a>
                 }
             </div>
         </div>

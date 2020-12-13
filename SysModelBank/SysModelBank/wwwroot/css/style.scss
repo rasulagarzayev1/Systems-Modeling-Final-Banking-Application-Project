@@ -92,3 +92,24 @@ footer{
         margin-bottom: 0;
     }
 }
+
+.confirmPart .confirm {
+    color: white;
+    background-color: #ee6c4d;
+    border: 2px solid #ee6c4d;
+    outline: none;
+    -webkit-box-shadow: inset 0 0 0 0 #ffff;
+    box-shadow: inset 0 0 0 0 #ffff;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+    border-radius: 3px;
+}
+
+.confirmPart .confirm:hover {
+    color: #ee6c4d;
+    background-color: white;
+    -webkit-box-shadow: inset 0 0 0 0 #ffff;
+    box-shadow: inset 0 0 0 0 #ffff;
+    -webkit-box-shadow: inset 0 0 0 50px #ffff;
+    box-shadow: inset 0 0 0 50px #ffff;
+}

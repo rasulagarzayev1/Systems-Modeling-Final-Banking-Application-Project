@@ -2,27 +2,31 @@
 @model SysModelBank.Models.Overview.OverviewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Overview";
 }
+<link rel="stylesheet" href="~/css/userIndex.css" />
 
-<h1>Index</h1>
-@if (User.IsInRole(Role.Admin))
-{
-    <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index">Users</a><br />
-    <a asp-area="Admin" asp-controller="TransactionsOverview" asp-action="Index">Transactions</a><br />
-    <a asp-area="Admin" asp-controller="LogOverview" asp-action="Index">Logs</a>    
-}
+<div class="container myContainer">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome, @User.Identity.Name</h1>
+        </div>
+    </div>
+    <div class="adminOverview pl-3 confirmPart">
+        <p>User:</p>
+        <hr>
 
-<div>
-    <h4>User</h4>
-    <a asp-controller="ClientTransaction" asp-action="Index">My transactions</a>
-    <hr />
-    @Model.UserAccounts.Count()
-    <form asp-controller="Account" asp-action="CreateAccount">
-        <input type="submit" />
-    </form>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", "User", new {/* id = Model.PrimaryKey */}) |
-    <a asp-action="Index">Back to List</a>
+        <a class="overViewBtn mr-4 ml-2" asp-area="" asp-controller="ClientTransaction" asp-action="Index">Transactions</a>
+        <a class="overViewBtn mr-4 ml-2" asp-area="" asp-controller="ClientTransaction" asp-action="New">New transaction</a>
+    </div>
+    @if (User.IsInRole(Role.Admin))
+    {
+        <div class="adminOverview pl-3 mt-3">
+            <p>Admin:</p>
+            <hr>
+            <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index" class="overViewBtn mr-4 ml-2">Users</a>
+            <a asp-area="Admin" asp-controller="TransactionsOverview" asp-action="Index" class="overViewBtn mr-4">Transactions</a>
+            <a asp-area="Admin" asp-controller="LogOverview" asp-action="Index" class="overViewBtn">Logs</a>
+        </div>
+    }
 </div>
