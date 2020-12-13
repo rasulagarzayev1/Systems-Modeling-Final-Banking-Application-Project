@@ -17,5 +17,10 @@ namespace SysModelBank.Data.Repositories
         {
             return Query().SingleOrDefaultAsync(x => x.Code == code);
         }
+
+        public async Task<bool> Exists(string code)
+        {
+            return (await GetAsync(code)) != null;
+        }
     }
 }

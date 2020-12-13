@@ -9,5 +9,6 @@ namespace SysModelBank.Data.Repositories
     public interface ITransactionCodeRepository : IRepository<TransactionCode>
     {
         public Task<TransactionCode> GetAsync(string code);
+        public Task<bool> Exists(string code);
     }
 }

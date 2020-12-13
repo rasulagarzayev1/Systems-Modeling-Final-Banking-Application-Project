@@ -9,6 +9,7 @@
     <div class="row">
         <div class="col-12">
             <form asp-controller="ClientTransaction" asp-action="CreateTransaction" method="post">
+                <input asp-for="TransactionCode" type="hidden"/>
                 <div class="form-group">
                     <label asp-for="TransactionSource">Source account:</label>
                     <select asp-for="TransactionSource" asp-items="Model.AvailableAccounts" required>
@@ -16,36 +17,16 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="TransactionRecipient">Recipient account:</label>
-                    @if (Model.TransactionCode != null)
-                    {
-                        <input asp-for="TransactionRecipient" type="text" class="form-control" id="recipientId" disabled required>
-                    }
-                    else
-                    {
-                        <input asp-for="TransactionRecipient" type="text" class="form-control" id="recipientId" required>
-                    }
+                    <input asp-for="TransactionRecipient" type="text" class="form-control" id="recipientId" required disabled="@(Model.TransactionCode != null)">
                 </div>
                 <div class="form-group">
                     <label asp-for="TransactionAmount">Amount:</label>
-                    @if (Model.TransactionCode != null)
-                    {
-                        <input asp-for="TransactionAmount" type="text" class="form-control" id="amount" disabled required>
-                    }
-                    else
-                    {
-                        <input asp-for="TransactionAmount" type="text" class="form-control" id="amount" required>
-                    }
+                    <input asp-for="TransactionAmount" type="text" class="form-control" id="amount" required disabled="@(Model.TransactionCode != null)">
+
                 </div>
                 <div class="form-group">
                     <label asp-for="TransactionDescription">Description:</label>
-                    @if (Model.TransactionCode != null)
-                    {
-                        <input asp-for="TransactionDescription" type="text" class="form-control" id="description" disabled required>
-                    }
-                    else
-                    {
-                        <input asp-for="TransactionDescription" type="text" class="form-control" id="description" required>
-                    }
+                    <input asp-for="TransactionDescription" type="text" class="form-control" id="description" required disabled="@(Model.TransactionCode != null)">
                 </div>
                 <button type="submit" class="btn btn-block formButton">Create</button>
             </form>

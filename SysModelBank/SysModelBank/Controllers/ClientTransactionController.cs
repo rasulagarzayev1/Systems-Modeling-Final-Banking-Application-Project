@@ -141,14 +141,9 @@ namespace SysModelBank.Controllers
                     code = StringValues.Empty;
                     ViewBag.Notification = new NotificationModel("The entered transaction code doesn't exist!").asError();
                 }
-                else if (availableAccounts.FirstOrDefault(x => x.Id == transactionCode.RecipientId) != null)
-                {
-                    code = StringValues.Empty;
-                    ViewBag.Notification = new NotificationModel("You cannot use a transaction code created by yourself!").asError();
-                }
                 else
                 {
-                    recipientAccount = transactionCode.RecipientAccount.Id;
+                    recipientAccount = transactionCode.Id;
                     selectedDescription = transactionCode.Description;
                     selectedAmount = transactionCode.Amount;
                 }
