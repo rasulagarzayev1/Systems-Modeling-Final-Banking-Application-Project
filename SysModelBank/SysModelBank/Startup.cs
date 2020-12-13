@@ -49,6 +49,13 @@ namespace SysModelBank
             {
                 x.LoginPath = "/";
                 x.LogoutPath = "/Identity";
+                x.AccessDeniedPath = "/Error/AccessDenied";
+            });
+
+            services.AddAuthorization(options => 
+            {
+                options.AddPolicy(PolicyConstants.Admin, policy => 
+                policy.RequireRole(Role.Admin));
             });
         }
 
@@ -66,6 +73,9 @@ namespace SysModelBank
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithReExecute("/error");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

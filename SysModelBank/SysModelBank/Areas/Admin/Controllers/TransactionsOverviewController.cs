@@ -13,10 +13,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SysModelBank.Services.Logger;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SysModelBank.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Policy = PolicyConstants.Admin)]
     public class TransactionsOverviewController : Controller
     {
         private readonly IUserRepository _userRepository;
@@ -89,7 +91,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Seed()
+        public IActionResult Seed()
         {
             return View();
         }

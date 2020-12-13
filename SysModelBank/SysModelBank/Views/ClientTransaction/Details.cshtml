@@ -1,0 +1,48 @@
+@model SysModelBank.Models.Transaction.ClientTransactionDetails
+
+<link rel="stylesheet" href="~/css/detailedTransactionView.css">
+
+<div class="container myContainer">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Transaction #@Model.Id</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 mt-3 mb-4">
+            <h4 class="mt-4 mb-4">Transaction information</h4>
+            <div class="mainParts firstPart">
+                <p><b>Status: </b>@Model.Status</p>
+                <p><b>Amount: </b>@Model.Amount</p>
+                <p><b>Creation time: </b>@Model.CreationTime</p>
+                <p><b>Sender name: </b>@Model.SenderName</p>
+                <p><b>Reciever name: </b>@Model.RecipientName</p>
+                <p><b>Description: </b>@Model.Description</p>
+            </div>
+        </div>
+        <div class="col-md-5 mt-3 mb-4">
+            <h4 class="mt-4 mb-4">Request undo</h4>
+            <div class="mainParts firstPart">
+                @if (Model.Status == SysModelBank.Data.Enums.TransactionStatus.Done)
+                {
+                    <form asp-controller="ClientTransaction" asp-action="RequestUndo" asp-route-id="@Model.Id">
+                        <div class="form-group">
+                            <label asp-for="Description">Description:</label>
+                            <input asp-for="Description" type="text" class="form-control" id="description">
+                            <button type="submit" class="btn deleteButton">Request undo</button>
+                        </div>
+                    </form>
+                }
+                @if (Model.Status == SysModelBank.Data.Enums.TransactionStatus.PendingCancellation)
+                {
+                    <form asp-controller="ClientTransaction" asp-action="CancelUndo" asp-route-id="@Model.Id">
+                        <div class="form-group">
+                            <button type="submit" class="btn deleteButton">Cancel undo</button>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>

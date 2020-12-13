@@ -1,14 +1,18 @@
-﻿@model SysModelBank.Models.Overview.OverviewModel
+﻿@using SysModelBank.Data.Models.Identity
+@model SysModelBank.Models.Overview.OverviewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
+@if (User.IsInRole(Role.Admin))
+{
+    <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index">Users</a><br />
+    <a asp-area="Admin" asp-controller="TransactionsOverview" asp-action="Index">Transactions</a><br />
+    <a asp-area="Admin" asp-controller="LogOverview" asp-action="Index">Logs</a>    
+}
 
-<a asp-area="Admin" asp-controller="UserManagement" asp-action="Index">Users</a><br />
-<a asp-area="Admin" asp-controller="TransactionsOverview" asp-action="Index">Transactions</a><br />
-<a asp-area="Admin" asp-controller="LogOverview" asp-action="Index">Logs</a>
 <div>
     <h4>User</h4>
     <a asp-controller="ClientTransaction" asp-action="Index">My transactions</a>
