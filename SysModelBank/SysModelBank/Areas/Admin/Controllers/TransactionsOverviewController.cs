@@ -130,8 +130,8 @@ namespace SysModelBank.Areas.Admin.Controllers
             return new TransactionListItem
             {
                 Id = transaction.Id,
-                SenderName = SendingUser.Firstname + " " + SendingUser.Lastname,
-                RecipientName = RecivingUser.Firstname + " " + RecivingUser.Lastname,
+                SenderName = $"{transaction.SenderAccountId} ({SendingUser.Firstname} {SendingUser.Lastname})",
+                RecipientName = $"{transaction.RecipientAccountId} ({RecivingUser.Firstname} {RecivingUser.Lastname})",
                 Date = transaction.CreationTime,
                 Amount = Math.Round(transaction.Amount * currentUser.Currency.RateFromEur, 2)
             };
