@@ -19,20 +19,23 @@ using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using SysModelBank.Extensions;
 using SysModelBank.Models;
+using SysModelBank.Services.Logger;
 
 namespace SysModelBank.Controllers
 {
     public class ClientTransactionController : Controller
     {
         private Random  random = new Random();
+        private readonly IBankLogger _logger;
         private readonly IUserRepository _userRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly ITransactionRepository _transactionRepository;
         private readonly ITransactionCodeRepository _transactionCodeRepository;
         private readonly UserManager<User> _userManager;
 
-        public ClientTransactionController(IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository, ITransactionCodeRepository transactionCodeRepository, UserManager<User> userManager)
+        public ClientTransactionController(IBankLogger logger, IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository, ITransactionCodeRepository transactionCodeRepository, UserManager<User> userManager)
         {
+            _logger = logger;
             _userRepository = userRepository;
             _accountRepository = accountRepository;
             _transactionRepository = transactionRepository;
@@ -99,10 +102,13 @@ namespace SysModelBank.Controllers
         [HttpPost]
         public async Task<IActionResult> RequestUndo(int id, string description)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             var transaction = await _transactionRepository.GetAsync(id);
 
             transaction.Status = TransactionStatus.PendingCancellation;
             await _transactionRepository.UpdateAsync(transaction);
+
+            _logger.Log("ClientTransactionController", $"User {currentUser.UserName} submitted transaction {id} to be undone!");
 
             return RedirectToAction("Details", new { id });
         }
@@ -251,6 +257,9 @@ namespace SysModelBank.Controllers
             if (transactionCode != null)
                 await _transactionCodeRepository.RemoveAsync(transactionCode);
 
+            _logger.Log("ClientTransactionController", $"User {currentUser.UserName} created a transaction from account {sourceAccount.Id} to account {recipientAccount.Id} with amount {normalizedAmount}€");
+
+
             return RedirectToAction("New", new NotificationModel("The transaction was successful!").asSuccess());
         }
 
@@ -299,6 +308,7 @@ namespace SysModelBank.Controllers
             };
 
             await _transactionCodeRepository.CreateAsync(transactionCode);
+            _logger.Log("ClientTransactionController", $"User {currentUser.UserName} created a transaction code for account {recipientAccountId} with amount {normalizedAmount}€");
 
             return RedirectToAction("Index", new NotificationModel($"The transaction code that was created is \"{generatedCode}\"!").asSuccess());
         }
