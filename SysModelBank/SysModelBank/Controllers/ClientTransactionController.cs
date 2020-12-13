@@ -315,6 +315,7 @@ namespace SysModelBank.Controllers
 
         private async Task<TransactionListItem> MapToListItem(Transaction transaction)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             User SendingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.SenderAccountId)).UserId));
             User RecivingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.RecipientAccountId)).UserId));
             return new TransactionListItem
@@ -323,16 +324,17 @@ namespace SysModelBank.Controllers
                 SenderName = SendingUser.Firstname + " " + SendingUser.Lastname,
                 RecipientName = RecivingUser.Firstname + " " + RecivingUser.Lastname,
                 Date = transaction.CreationTime,
-                Amount = transaction.Amount
+                Amount = Math.Round(transaction.Amount * currentUser.Currency.RateFromEur, 2)
             };
         }
 
-        private ClientTransactionDetails MapToDetails(Transaction transaction)
+        private async Task<ClientTransactionDetails> MapToDetails(Transaction transaction)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             return new ClientTransactionDetails
             {
                 Id = transaction.Id,
-                Amount = transaction.Amount,
+                Amount = Math.Round(transaction.Amount * currentUser.Currency.RateFromEur, 2),
                 CreationTime = transaction.CreationTime,
                 Description = transaction.Description,
                 RecipientName = transaction.RecipientAccount.User.Firstname + " " + transaction.RecipientAccount.User.Lastname,

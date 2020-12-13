@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SysModelBank.Areas.Admin.Models.TransactionOverview;
-using SysModelBank.Areas.Admin.Models.UserManagement;
 using SysModelBank.Data.Enums;
 using SysModelBank.Data.Models;
 using SysModelBank.Data.Models.Identity;
@@ -10,7 +9,6 @@ using SysModelBank.Data.Repositories.Identity;
 using SysModelBank.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using SysModelBank.Services.Logger;
 using Microsoft.AspNetCore.Authorization;
@@ -25,13 +23,15 @@ namespace SysModelBank.Areas.Admin.Controllers
         private readonly IAccountRepository _accountRepository;
         private readonly ITransactionRepository _transactionRepository;
         private readonly IBankLogger _logger;
+        private readonly UserManager<User> _userManager;
 
-        public TransactionsOverviewController(IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository, IBankLogger logger)
+        public TransactionsOverviewController(IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository, IBankLogger logger, UserManager<User> userManager)
         {
             _userRepository = userRepository;
             _accountRepository = accountRepository;
             _transactionRepository = transactionRepository;
             _logger = logger;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -114,7 +114,7 @@ namespace SysModelBank.Areas.Admin.Controllers
 
             var account = await _accountRepository.GetAsync(model.RecipientId);
 
-            account.Balance += model.Amount;
+            account.Balance += model.Amount / admin.Currency.RateFromEur;
 
             await _accountRepository.UpdateAsync(account);
             _logger.Log("TransactionsOverviewController", $"Seed transaction with amount {model.Amount} was done by {HttpContext.User.Identity.Name} to {account.User.UserName}");
@@ -124,6 +124,7 @@ namespace SysModelBank.Areas.Admin.Controllers
 
         private async Task<TransactionListItem> MapToListItem(Transaction transaction)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             User SendingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.SenderAccountId)).UserId));
             User RecivingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.RecipientAccountId)).UserId));
             return new TransactionListItem
@@ -132,12 +133,13 @@ namespace SysModelBank.Areas.Admin.Controllers
                 SenderName = SendingUser.Firstname + " " + SendingUser.Lastname,
                 RecipientName = RecivingUser.Firstname + " " + RecivingUser.Lastname,
                 Date = transaction.CreationTime,
-                Amount = transaction.Amount
+                Amount = Math.Round(transaction.Amount * currentUser.Currency.RateFromEur, 2)
             };
         }
 
         private async Task<TransactionDetail> MapToDetail(Transaction transaction)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             User SendingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.SenderAccountId)).UserId));
             User RecivingUser = (await _userRepository.GetAsync((await _accountRepository.GetAsync(transaction.RecipientAccountId)).UserId));
 
@@ -145,7 +147,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             {
                 Id = transaction.Id,
                 Status = transaction.Status,
-                Amount = transaction.Amount,
+                Amount = Math.Round(transaction.Amount * currentUser.Currency.RateFromEur, 2),
                 CreationTime = transaction.CreationTime,
                 SenderAccountId = transaction.SenderAccountId,
                 SenderName = SendingUser.Firstname + " " + SendingUser.Lastname,

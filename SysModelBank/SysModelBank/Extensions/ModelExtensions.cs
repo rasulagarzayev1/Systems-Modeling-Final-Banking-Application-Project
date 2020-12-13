@@ -16,7 +16,7 @@ namespace SysModelBank.Extensions
         public static AccountModel ToAccountModel(this Account account, Currency requestedCurrency) =>
             new AccountModel
             {
-                Balance = account.Balance * requestedCurrency.RateFromEur,
+                Balance = Math.Round(account.Balance * requestedCurrency.RateFromEur, 2),
                 Id = account.Id
             };
 
