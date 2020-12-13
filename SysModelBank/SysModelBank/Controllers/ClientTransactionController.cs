@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SysModelBank.Areas.Admin.Models.TransactionOverview;
@@ -24,6 +24,7 @@ namespace SysModelBank.Controllers
 {
     public class ClientTransactionController : Controller
     {
+        private Random  random = new Random();
         private readonly IUserRepository _userRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly ITransactionRepository _transactionRepository;
@@ -173,7 +174,7 @@ namespace SysModelBank.Controllers
             TransactionCode transactionCode = null;
             if (model.TransactionCode != null)
             {
-                transactionCode = await _transactionCodeRepository.GetAsync(HttpContext.Request.Query["transaction_code"]);
+                transactionCode = await _transactionCodeRepository.GetAsync(model.TransactionCode);
                 if (transactionCode == null)
                 {
                     return RedirectToAction("New",
@@ -261,7 +262,50 @@ namespace SysModelBank.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTransactionCode()
         {
-            return RedirectToAction("New", new NotificationModel("The transaction was successful!").asSuccess());
+            Debug.WriteLine(JsonConvert.SerializeObject(Request.Form));
+            if (!Request.Form.ContainsKey("recipient_account") || !Request.Form.ContainsKey("amount") || !Request.Form.ContainsKey("description"))
+                return RedirectToAction("Index", new NotificationModel("Please fill out all the necessary fields! Thank you!").asError());
+
+            if (!int.TryParse(Request.Form["recipient_account"].ToString(), out int recipientAccountId))
+                return RedirectToAction("Index", new NotificationModel("Hey! The recipient account is supposed to be a number?!?!! How did you manage to change it up?").asError());
+
+            if (!decimal.TryParse(Request.Form["amount"].ToString(), out decimal amount))
+                return RedirectToAction("Index", new NotificationModel("Please enter an actual number as the amount!").asError());
+
+            if (string.IsNullOrEmpty(Request.Form["description"].ToString()))
+                return RedirectToAction("Index", new NotificationModel("Description really can't be empty!").asError());
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            var recipientAccount = currentUser.Accounts.FirstOrDefault(x => x.Id == recipientAccountId);
+            if (recipientAccount == null)
+            {
+                return RedirectToAction("New",
+                    new NotificationModel("Thank you for using the Systems Modelling banking application, please continue to your nearest account!").asError());
+            }
+
+            if (recipientAccount.UserId != currentUser.Id)
+            {
+                return RedirectToAction("New",
+                    new NotificationModel("Hey! That's not cool!").asError());
+            }
+
+            var normalizedAmount = amount / currentUser.Currency.RateFromEur;
+            var generatedCode = random.Next(123456, 999999).ToString();
+            while ((await _transactionCodeRepository.Exists(generatedCode)))
+                generatedCode = random.Next(123456, 999999).ToString();
+
+            var transactionCode = new TransactionCode
+            {
+                Amount = normalizedAmount,
+                Code = generatedCode,
+                CreationTime = DateTime.Now,
+                Description = Request.Form["description"],
+                RecipientId = recipientAccountId
+            };
+
+            await _transactionCodeRepository.CreateAsync(transactionCode);
+
+            return RedirectToAction("Index", new NotificationModel($"The transaction code that was created is \"{generatedCode}\"!").asSuccess());
         }
 
         private async Task<TransactionListItem> MapToListItem(Transaction transaction)
