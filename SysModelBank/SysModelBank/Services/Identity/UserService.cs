@@ -34,7 +34,7 @@ namespace SysModelBank.Services.Identity
 
             var result = await _signInManager.PasswordSignInAsync(username, password, true, false);
 
-            return (result.Succeeded, "");
+            return (result.Succeeded, result.Succeeded ? "" : "Incorrect password was entered!");
         }
 
     }
