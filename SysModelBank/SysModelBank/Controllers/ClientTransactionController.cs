@@ -96,7 +96,7 @@ namespace SysModelBank.Controllers
         {
             var transaction = await _transactionRepository.GetAsync(id);
 
-            return View(MapToDetails(transaction));
+            return View(await MapToDetails(transaction));
         }
 
         [HttpPost]
