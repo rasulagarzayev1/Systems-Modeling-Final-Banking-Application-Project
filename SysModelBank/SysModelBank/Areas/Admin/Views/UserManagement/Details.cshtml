@@ -43,7 +43,23 @@
         <div class="col-md-5 mt-3 offset-md-2 mb-4">
             <h4 class="mt-4 mb-4">Account details</h4>
             <div class="mainParts secondPart">
-                <p><b>Account nr:</b> 123456789012</p>
+                <table class="myTable" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Account:</th>
+                        <th>Balance:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var account in Model.Accounts)
+                    {
+                        <tr>
+                            <td>@account.Id</td>
+                            <td>@account.Balance @account.Currency</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table> 
             </div>
         </div>
     </div>

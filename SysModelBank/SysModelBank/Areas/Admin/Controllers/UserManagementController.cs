@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SysModelBank.Areas.Admin.Models.UserManagement;
 using SysModelBank.Data.Enums;
@@ -62,9 +63,10 @@ namespace SysModelBank.Areas.Admin.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             var user = await _userRepository.GetAsync(id);
 
-            return View(await MapToDetail(user));
+            return View(await MapToDetail(user, currentUser));
         }
 
         [HttpPost]
@@ -93,6 +95,7 @@ namespace SysModelBank.Areas.Admin.Controllers
                 return RedirectToAction("Details", new { id });
             }
 
+
             var user = await _userRepository.GetAsync(id);
 
             user.Status = UserStatus.Deleted;
@@ -106,9 +109,10 @@ namespace SysModelBank.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
             var user = await _userRepository.GetAsync(id);
 
-            return View(await MapToDetail(user));
+            return View(await MapToDetail(user, currentUser));
         }
 
         [HttpPost]
@@ -141,7 +145,7 @@ namespace SysModelBank.Areas.Admin.Controllers
             };
         }
 
-        private async Task<UserDetail> MapToDetail(User user)
+        private async Task<UserDetail> MapToDetail(User user, User currentUser)
         {
             return new UserDetail
             {
@@ -153,7 +157,8 @@ namespace SysModelBank.Areas.Admin.Controllers
                 Email = user.Email,
                 Phone = user.PhoneNumber,
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
-                Status = user.Status
+                Status = user.Status,
+                Accounts = user.Accounts.Select(x => new UserAccountModel { Balance = Math.Round(x.Balance * currentUser.Currency.RateFromEur, 2), Id = x.Id, Currency = currentUser.Currency.Name})
             };
         }
     }
