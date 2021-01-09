@@ -21,7 +21,17 @@
 #### Jekaterina
 
 #### Rasul
-
+I do not remember my time tracking well. I am just writing what I remember. 
+24.11 2h discussion during the lab;
+25.11 5h Firstly creating some design wireframe for account overview, login and register overview front pages and after that developing them.
+26.11 3-4h frontend team discussion
+27.11 1-2h team meeting
+29.11 3h Some discussion with frontend team and development of admin account page and adding footer to the developed pages.
+30.11 1h Some discussions with frontend team and development of client transaction overview page.
+01.12 2-3h Autheticated user and admin index pages developed and we made meeting with frontend team and i explained some code structure of HTML and CSS and Bootstrap
+02.12 2-3h I fixed some bugs in the project and I added validation in JavaScript for registration page.
+08.12 2h Detailed transaction view page and admin log overview page developed
+12.12 1-2h Developed new transaction page and fixed some bugs.
 #### Ida Maria
 (Lost my notes on tracked time before 23.11, sorry... Time was spent on thinking the project through, trying to coordinate the work in the frontend team, checking that everyone understood what they were doing and everyone had been assigned to eithr frontend or backend team etc)
 24.11 - 2h discussion during the lab, reading about technologies we use in the project, reading through the issues<br>
