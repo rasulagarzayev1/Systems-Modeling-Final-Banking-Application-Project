@@ -1,6 +1,16 @@
 ### Let's keep track of our working hours!
 
 #### Karl
+19.11 - 2h reading about Asp.net <br>
+23.11 - 2h failing to understand what is going on in the generated initial code <br>
+24.11 - 5h implementing logging <br>
+26.11 - 2h reading the tutorial Taavi linked me <br>
+29.11 - 2h finishing the tutorial <br>
+01.12 - 4h implementing saving logs to the database and thinking about the project <br>
+02.12 - 0.5h planning work <br>
+11.12 - 4h implementing transaction database stuff and admin overview <br>
+12.12 - 6h implementing various transaction stuff <br>
+13.13 - 0.5h implementing currency conversions <br>
 
 #### Lauri
 
