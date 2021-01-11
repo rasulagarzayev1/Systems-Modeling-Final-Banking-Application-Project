@@ -13,7 +13,22 @@
 13.13 - 0.5h implementing currency conversions <br>
 
 #### Lauri
-
+I didn't really take specific notes on what I worked on , but I have tried to write down the hours in here approximately.
+* First week (02.11 - 08.11):
+  From what I can remember I didn't really do much work for the project on this week after the lab (mainly focused on previous labs), but I started familiarizing myself with the specification, so maybe about 2h of spent time.
+* Second week (09.11 - 15.11):
+  This week was spent on thinking about the project implementation (functionalities I wanted to see), refining user stories and creating tasks, friday meeting. 9h in total.
+* Third week (16.11 - 22.11):
+  Finished creating tasks, spent answering thinking about and answering questions from team members, friday meeting - 3h.  
+* Fourth week (23.11 - 29.11):
+  Teammate questions, helping them, having a look at the first frontend and backend implementation. Implemented notification system - 5h.
+* Fifth week (30.11 - 06.12):
+  Don't remember much about this week, but we still had the friday meeting and had to answer questions from the team mates, so probably around 1-3h.
+* Sixth week (07.12 - 13.12):
+  This was the busiest week for me. About 10-11h spent working on the sanity check of the implementation, adding currency stuff, fixing other problems. And we also had the friday meeting.
+* Seventh week (14.12 - 15.12):
+  The ideas and coding aprt had been done in the previous weeks, only the presentation remained. Spent 2h on doing my recording for the presentation.
+  
 #### Taavi
 
 17.11.2020, 2h 30m. Planned upcoming work, decided to start reading ASP.NET Core documentation, Googling occasionally if needed and found some other tutorials to use later as well. Attempted to create basic initial models, which I commited the next day.
